@@ -18,10 +18,3 @@ def define_posicoes(Lin,Col,Ori,Tam):
             lf.append(Lis_Pos)
         ###
     return lf
-
-linha = 2
-coluna = 4
-orientacao = "vertical"
-tamanho = 3
-
-print(define_posicoes(linha, coluna, orientacao, tamanho))
