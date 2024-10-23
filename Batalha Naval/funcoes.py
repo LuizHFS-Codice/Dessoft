@@ -34,13 +34,13 @@ def preenche_frota(frota, nome_navio, Lin, Col, Ori,Tam):
     
     return frota 
 
-frota = {}
-nome_navio = "navio-tanque"
-Lin = 6
-Col = 1
-Ori = "horizontal"
-Tam = 3
+# frota = {}
+# nome_navio = "navio-tanque"
+# Lin = 6
+# Col = 1
+# Ori = "horizontal"
+# Tam = 3
 
-resultado = preenche_frota(frota,nome_navio, Lin, Col, Ori, Tam)
-print(resultado)
+# resultado = preenche_frota(frota,nome_navio, Lin, Col, Ori, Tam)
+# print(resultado)
 #---------------------------------------------------------------------------------

@@ -15,4 +15,5 @@ elif Embarc==ListEmbarc[2]:
     Tam=2
 elif Embarc==ListEmbarc[3]:
     Tam=1
-print(define_posicoes(Lin,Col,Ori,Tam))
+Frota={}
+print(preenche_frota(Frota,Embarc,Lin,Col,Ori,Tam))
