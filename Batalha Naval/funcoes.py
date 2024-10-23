@@ -18,3 +18,5 @@ def define_posicoes(Lin,Col,Ori,Tam):
             lf.append(Lis_Pos)
         ###
     return lf
+
+print('oi')
