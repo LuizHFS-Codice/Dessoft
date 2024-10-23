@@ -1,5 +1,8 @@
 #Jogo
+from funcoes import preenche_frota
 from funcoes import define_posicoes
+from funcoes import faz_jogada
+import numpy as np
 
 Tam=0 #Tamanho do Navio
 Lin=int(input("Linha escolhida> "))
