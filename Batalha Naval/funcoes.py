@@ -45,10 +45,41 @@ def preenche_frota(frota, nome_navio, Lin, Col, Ori,Tam):
 # print(resultado)
 #---------------------------------------------------------------------------------
 
-#Questão 3
-def faz_jogada(Tab,Lin,Col):
-    if Tab[Lin][Col]==0:
-        Tab[Lin][Col]='-'
+# Questão 3 (feita dia 23/10)
+
+
+def faz_jogada(tabuleiro, Lin, Col):
+
+    # verificando  a posicao no tabuleiro com condiconais 
+    if tabuleiro[Lin][Col] == 1:
+        tabuleiro[Lin][Col] = 'x' #Ou seja, acertou alguma coisa 
     else:
-        Tab[Lin][Col]='x'
-    return Tab
+         tabuleiro[Lin][Col] = '-' #errou e não acertou ninguém 
+    
+    return tabuleiro
+
+# # teste:
+
+# from pprint import  pprint
+
+# tabuleiro = [
+#   [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+#   [0, 1, 0, 0, 0, 1, 1, 1, 1, 0],
+#   [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+#   [0, 1, 1, 1, 0, 0, 0, 1, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+#   [0, 1, 1, 0, 0, 0, 0, 0, 0, 0]
+# ]
+
+# linha = 1
+# coluna = 1
+# # resultado = faz_jogada(tabuleiro, linha, coluna)
+# # print(resultado)
+
+# tabuleiro = faz_jogada(tabuleiro, 1, 1)
+
+# pprint(tabuleiro)
