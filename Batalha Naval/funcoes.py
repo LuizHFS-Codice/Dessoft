@@ -44,3 +44,11 @@ def preenche_frota(frota, nome_navio, Lin, Col, Ori,Tam):
 # resultado = preenche_frota(frota,nome_navio, Lin, Col, Ori, Tam)
 # print(resultado)
 #---------------------------------------------------------------------------------
+
+#Questão 3
+def faz_jogada(Tab,Lin,Col):
+    if Tab[Lin][Col]==0:
+        Tab[Lin][Col]='-'
+    else:
+        Tab[Lin][Col]='x'
+    return Tab
