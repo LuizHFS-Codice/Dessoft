@@ -1,3 +1,4 @@
+# Questão 1 (feita dia 21/10)
 def define_posicoes(Lin,Col,Ori,Tam):
     lf=[]
     Cont=0
@@ -19,4 +20,27 @@ def define_posicoes(Lin,Col,Ori,Tam):
         ###
     return lf
 
-print('oi')
+#------------------------------------------------------------------------------------
+# Questão 2 (feita dia 22/10)
+def preenche_frota(frota, nome_navio, Lin, Col, Ori,Tam):
+
+    posicoes_navio = define_posicoes(Lin,Col, Ori, Tam)
+
+
+    if nome_navio in frota:
+        frota[nome_navio].append(posicoes_navio)
+    else: 
+        frota[nome_navio] = [posicoes_navio]
+    
+    return frota 
+
+frota = {}
+nome_navio = "navio-tanque"
+Lin = 6
+Col = 1
+Ori = "horizontal"
+Tam = 3
+
+resultado = preenche_frota(frota,nome_navio, Lin, Col, Ori, Tam)
+print(resultado)
+#---------------------------------------------------------------------------------
