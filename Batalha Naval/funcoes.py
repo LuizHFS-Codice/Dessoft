@@ -83,4 +83,6 @@ def faz_jogada(tabuleiro, Lin, Col):
 # tabuleiro = faz_jogada(tabuleiro, 1, 1)
 
 # pprint(tabuleiro)
-h='h'
+
+#--------------------------------------------------------------------------
+#Questão 4
