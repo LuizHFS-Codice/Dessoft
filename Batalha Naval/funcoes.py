@@ -52,7 +52,7 @@ def faz_jogada(tabuleiro, Lin, Col):
 
     # verificando  a posicao no tabuleiro com condiconais 
     if tabuleiro[Lin][Col] == 1:
-        tabuleiro[Lin][Col] = 'x' #Ou seja, acertou alguma coisa 
+        tabuleiro[Lin][Col] = 'X' #Ou seja, acertou alguma coisa 
     else:
          tabuleiro[Lin][Col] = '-' #errou e não acertou ninguém 
     
