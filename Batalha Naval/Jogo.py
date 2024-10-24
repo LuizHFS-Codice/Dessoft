@@ -2,9 +2,9 @@
 from funcoes import preenche_frota
 from funcoes import faz_jogada
 from funcoes import posiciona_frota
+from pprint import pprint
 import numpy as np
 
-print(posiciona_frota(0))
 Tam=0 #Tamanho do Navio
 Lin=int(input("Linha escolhida> "))
 Col=int(input("Coluna Escolhida> "))
@@ -20,4 +20,7 @@ elif Embarc==ListEmbarc[2]:
 elif Embarc==ListEmbarc[3]:
     Tam=1
 Frota={}
-print(preenche_frota(Frota,Embarc,Lin,Col,Ori,Tam))
+Frota=preenche_frota(Frota,Embarc,Lin,Col,Ori,Tam)
+print(Frota)
+Tabuleiro=posiciona_frota(Frota)
+pprint(Tabuleiro)
