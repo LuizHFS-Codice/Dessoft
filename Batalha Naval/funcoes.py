@@ -83,4 +83,26 @@ def faz_jogada(tabuleiro, Lin, Col):
 # tabuleiro = faz_jogada(tabuleiro, 1, 1)
 
 # pprint(tabuleiro)
-h='h'
+
+# Questão 4 (feita dia 24/10)
+
+#   1) iniciar o tabuleiro como uma lista de 10 por 10, sendo todos os valores 0
+#       2) para cada navio no dicionário da minha frota eu tenho que percorrer esse dicionário onde está suas posições e marcar como 1 no tabuleiro 
+#           3) Dar um return para ter esse tabuleiro preenchido
+
+def posiciona_frota(frota):
+    # entender como usar "place holder"
+    tabuleiro = [] # começar vazio pq meu tabuleiro está somente com "0"
+
+    for i in range (10):
+        linha = [0*10] # são 10 
+        tabuleiro.append(linha)
+
+    #para conseguir percorrer o dicionario com a minha frota 
+
+    for posicoes in frota.values():
+        for posicao in posicoes:
+            for linha, coluna in posicoes:
+                tabuleiro[linha][coluna] =1
+    
+    return tabuleiro 
