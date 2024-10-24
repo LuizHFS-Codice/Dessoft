@@ -92,11 +92,7 @@ def faz_jogada(tabuleiro, Lin, Col):
 
 def posiciona_frota(frota):
     # entender como usar "place holder"
-    tabuleiro = [] # começar vazio pq meu tabuleiro está somente com "0"
-
-    for i in range (10):
-        linha = [0*10] # são 10 
-        tabuleiro.append(linha)
+    tabuleiro = [([0]*10)]*10 # Listas de Listas 0 para posicionar as frotas
 
     #para conseguir percorrer o dicionario com a minha frota 
 
@@ -107,20 +103,20 @@ def posiciona_frota(frota):
     
     return tabuleiro 
 #--------------------------------------------------------------------------
-#Questão 4
-def posiciona_frota(Frota):
-    Tab=[
-        ([0]*10),
-        ([0]*10),
-        ([0]*10),
-        ([0]*10),
-        ([0]*10),
-        ([0]*10),
-        ([0]*10),
-        ([0]*10),
-        ([0]*10),
-        ([0]*10),
-        ([0]*10),
-        ([0]*10),        
-    ]
-    return Tab
+#Questão 4 Idéia substituida do primeiro tabuleiro
+# def posiciona_frota(Frota):
+#     Tab=[
+#         ([0]*10),
+#         ([0]*10),
+#         ([0]*10),
+#         ([0]*10),
+#         ([0]*10),
+#         ([0]*10),
+#         ([0]*10),
+#         ([0]*10),
+#         ([0]*10),
+#         ([0]*10),
+#         ([0]*10),
+#         ([0]*10),        
+#     ]
+#     return Tab
