@@ -299,3 +299,111 @@ def posicao_valida(frota,Lin, Col, orientacao, tamanho):
 # tamanho = 4
 # resultado = posicao_valida(frota, linha, coluna, orientacao, tamanho)
 # print(resultado)
+ print(resultado)
+
+
+
+# ------------------------------------------------------------------------------------------------------
+# Questão 6 (Começada em 25/10) Feito pelo Antonio
+
+
+#  a aposicao devem estar dentro dos limites do tabuileiro que é 10 x 10
+#  o lugar que um novo navio ocipar não pode ser o mesmo que as já ocupadas pelos outros navios 
+def posicao_valida(frota,Lin, Col, orientacao, tamanho):
+
+    # saber onde os navios já estão
+    posicoes = define_posicoes(Lin, Col, orientacao, tamanho)
+
+    for posicao in posicoes  :
+
+        Lin, Col = posicao
+        
+        #lembrando que tem que tá dentro do intervalo de 10 por 10
+
+        if Lin < 0 or Lin >= 10 or Col < 0 or Col >= 10:
+            return False
+
+    
+    for navio, posicoes_ocupadas in frota.items():
+        for lista_posicoes in posicoes_ocupadas:
+            for pos_ocupada in lista_posicoes:
+                if pos_ocupada in posicoes:
+                    return False         #Piramide de for kkkkkkkk (anotar isso, deu certo)
+    
+    return True
+
+
+# # teste 
+
+# frota = {
+#     "navio-tanque":[
+#       [[6,1],[6,2],[6,3]],
+#       [[4,7],[5,7],[6,7]]
+#     ],
+#     "contratorpedeiro":[
+#       [[1,1],[2,1]],
+#       [[2,3],[3,3]],
+#       [[9,1],[9,2]]
+#     ],
+#     "submarino": [
+#       [[0,3]],
+#       [[4,5]],
+#       [[8,9]],
+#       [[8,4]]
+#     ],
+# }
+# linha = 6
+# coluna = 2
+# orientacao = 'horizontal'
+# tamanho = 4
+# resultado = posicao_valida(frota, linha, coluna, orientacao, tamanho)
+# print(resultado)
+
+# frota = {
+#     "navio-tanque":[
+#       [[6,1],[6,2],[6,3]],
+#       [[4,7],[5,7],[6,7]]
+#     ],
+#     "contratorpedeiro":[
+#       [[1,1],[2,1]],
+#       [[2,3],[3,3]],
+#       [[9,1],[9,2]]
+#     ],
+#     "submarino": [
+#       [[0,3]],
+#       [[4,5]],
+#       [[8,9]],
+#       [[8,4]]
+#     ],
+# }
+# linha = 1
+# coluna = 5
+# orientacao = 'horizontal'
+# tamanho = 4
+# resultado = posicao_valida(frota, linha, coluna, orientacao, tamanho)
+# print(resultado)
+
+
+# frota = {
+#     "navio-tanque":[
+#       [[6,1],[6,2],[6,3]],
+#       [[4,7],[5,7],[6,7]]
+#     ],
+#     "contratorpedeiro":[
+#       [[1,1],[2,1]],
+#       [[2,3],[3,3]],
+#       [[9,1],[9,2]]
+#     ],
+#     "submarino": [
+#       [[0,3]],
+#       [[4,5]],
+#       [[8,9]],
+#       [[8,4]]
+#     ],
+# }
+# linha = 8
+# coluna = 8
+# orientacao = 'horizontal'
+# tamanho = 4
+# resultado = posicao_valida(frota, linha, coluna, orientacao, tamanho)
+# print(resultado)
