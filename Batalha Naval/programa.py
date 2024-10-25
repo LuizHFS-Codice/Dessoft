@@ -21,7 +21,7 @@ frota = {
 contagem=0
 ListNavios=[]
 while Tam!=0:#Contagem usando o tamanho como diferenciador
-    print(f'Insira as informações referentes ao navio {Embarcações[Tam-1]} que possui o tamanho {Tam}')
+    print(f'Insira as informações referentes ao navio {Embarcações[Tam-1]} que possui tamanho {Tam}')
     Embarc=Embarcações[Tam-1]#Embaracação do ciclo atual
 #-------------------------------------------------------------------------------------------------------   
     if Tam==4:  #Porta-Aviões
