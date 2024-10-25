@@ -299,7 +299,6 @@ def posicao_valida(frota,Lin, Col, orientacao, tamanho):
 # tamanho = 4
 # resultado = posicao_valida(frota, linha, coluna, orientacao, tamanho)
 # print(resultado)
- print(resultado)
 
 
 
