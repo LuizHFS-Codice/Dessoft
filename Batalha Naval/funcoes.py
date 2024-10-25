@@ -96,9 +96,10 @@ def posiciona_frota(frota):
 
     #para conseguir percorrer o dicionario com a minha frota 
 
-    for posicoes in frota.values():
-        for posicao in posicoes:
-            tabuleiro[posicao[0]][posicao[1]]=1
+    for posicoes in frota.values():#Acesso ao dicionário
+        for posicao in posicoes:#Primeira Camada de Lista
+            for Coords in posicao: #Segunda Camada de Lista
+                tabuleiro[Coords[0]][Coords[1]]=1 #Coordenadas das embarcações
     
     return tabuleiro 
 #--------------------------------------------------------------------------
@@ -121,10 +122,25 @@ def posiciona_frota(frota):
 #     return Tab
 #Teste-----------------------------------------------------------------
 # frota = {
-#     "porta-aviões": [[1,5], [1,6], [1,7], [1,8]],
-#     "navio-tanque": [[6,1], [6,2], [6,3], [4,7], [5,7], [6,7]],
-#     "contratorpedeiro": [[1,1], [2,1], [2,3], [3,3], [9,1], [9,2]],
-#     "submarino": [[0,3], [4,5], [8,9], [8,4]],
+#     "porta-aviões":[
+#       [[1,5],[1,6],[1,7],[1,8]]
+#     ],
+#     "navio-tanque":[
+#       [[6,1],[6,2],[6,3]],
+#       [[4,7],[5,7],[6,7]]
+#     ],
+#     "contratorpedeiro":[
+#       [[1,1],[2,1]],
+#       [[2,3],[3,3]],
+#       [[9,1],[9,2]]
+#     ],
+#     "submarino": [
+#       [[0,3]],
+#       [[4,5]],
+#       [[8,9]],
+#       [[8,4]]
+#     ],
 # }
-# print(posiciona_frota(frota))
+# resultado = posiciona_frota(frota)
+# print(resultado)
 #Teste-----------------------------------------------------------------
