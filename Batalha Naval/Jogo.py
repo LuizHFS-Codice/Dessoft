@@ -22,6 +22,7 @@ frota = {
     "submarino": [],
     }
 contagem=0
+ListNavios=[]
 while Tam!=0:#Contagem usando o tamanho como diferenciador
     print(f'Insira as informações referentes ao navio {Embarcações[Tam-1]} que possui o tamanho {Tam}')
     Embarc=Embarcações[Tam-1]#Embaracação do ciclo atual
@@ -50,7 +51,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
             Check1=posicao_valida(frota,Lin,Col,Ori,Tam)
 #--------------------------------------------------------------------------------------------------------
         Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
-        frota[Embarc]+=Pos#Colocando a posição da embarcação dentro da Frota
+        frota[Embarc]+=Pos#Colocando a posição da embarcação dentro da Frota utilizando [_] para ser o placeholder
 #-------------------------------------------------------------------------------------------------------- 
     elif Tam==3: #Navio_tanque
         while contagem<2:
@@ -73,13 +74,15 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
                 else:
                     Ori='horizontal'
                 Check1=posicao_valida(frota,Lin,Col,Ori,Tam)
+            Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
+            ListNavios.append(Pos)
             contagem+=1
 #---------------------------------------------------------------------------------------------------------
-        Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
-        frota[Embarc]+=Pos#Colocando a posição da embarcação dentro da Frota
+        frota[Embarc]+=ListNavios#Colocando a posição da embarcação dentro da Frota
 #---------------------------------------------------------------------------------------------------------
     elif Tam==2: #Navio_tanque
         contagem=0
+        ListNavios=[]
         while contagem<3:
             Lin=int(input("Linha escolhida> "))
             Col=int(input("Coluna Escolhida> "))
@@ -100,13 +103,15 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
                 else:
                     Ori='horizontal'
                 Check1=posicao_valida(frota,Lin,Col,Ori,Tam)
+            Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
+            ListNavios.append(Pos)
             contagem+=1
 #---------------------------------------------------------------------------------------------------------
-        Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
-        frota[Embarc]+=Pos#Colocando a posição da embarcação dentro da Frota
+        frota[Embarc]+=ListNavios#Colocando a posição da embarcação dentro da Frota
 #---------------------------------------------------------------------------------------------------------
     elif Tam==1: #Navio_tanque
         contagem=0
+        ListNavios=[]
         while contagem<4:
             Lin=int(input("Linha escolhida> "))
             Col=int(input("Coluna Escolhida> "))
@@ -116,10 +121,11 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
                 Lin=int(input("Linha escolhida> "))
                 Col=int(input("Coluna Escolhida> "))
                 Check1=posicao_valida(frota,Lin,Col,Ori,Tam)
+            Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
+            ListNavios.append(Pos)
             contagem+=1
 #---------------------------------------------------------------------------------------------------------
-        Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
-        frota[Embarc]+=Pos#Colocando a posição da embarcação dentro da Frota
+        frota[Embarc]+=ListNavios#Colocando a posição da embarcação dentro da Frota
 #---------------------------------------------------------------------------------------------------------
     Tam-=1
 print(frota)
