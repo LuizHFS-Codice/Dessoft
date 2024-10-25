@@ -28,7 +28,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
     "submarino": [],
     }
 #-------------------------------------------------------------------------------------------------------   
-    if Tam==4:
+    if Tam==4:  #Porta-Aviões
         Lin=int(input("Linha escolhida> "))
         Col=int(input("Coluna Escolhida> "))
         if Tam>1:
@@ -54,7 +54,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
         Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
         frota[Embarc]+=Pos#Colocando a posição da embarcação dentro da Frota
 #-------------------------------------------------------------------------------------------------------- 
-    elif Tam==3:
+    elif Tam==3: #Navio_tanque
         while contagem<2:
             Lin=int(input("Linha escolhida> "))
             Col=int(input("Coluna Escolhida> "))
@@ -79,7 +79,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
         Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
         frota[Embarc]+=Pos#Colocando a posição da embarcação dentro da Frota
 #---------------------------------------------------------------------------------------------------------
-    elif Tam==2:
+    elif Tam==2: #contratorpedeiro
         while contagem<3:
             Lin=int(input("Linha escolhida> "))
             Col=int(input("Coluna Escolhida> "))
@@ -105,7 +105,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
         Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
         frota[Embarc]+=Pos#Colocando a posição da embarcação dentro da Frota
 #----------------------------------------------------------------------------------------------------------
-    elif Tam==1:
+    elif Tam==1: #submarino
         while contagem<4:
             Lin=int(input("Linha escolhida> "))
         Col=int(input("Coluna Escolhida> "))
