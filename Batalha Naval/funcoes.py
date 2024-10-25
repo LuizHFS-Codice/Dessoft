@@ -148,45 +148,47 @@ def posiciona_frota(frota):
 def afundados (frota,Tabuleiro):
     Afundados=0#Afundados
     Cont=0
-    for Lista1,Lista2 in frota.items():
-        for Lista3 in Lista2:
-            if Tabuleiro[Lista3[0]][Lista3[1]] == 'X':
-                Cont+=1
-            if Cont==len(Lista2):
-                Afundados+=1
+    for Embarcação,Lista1 in frota.items():
+        for Lista2 in Lista1:
+            for Lista3 in Lista2:
+                if Tabuleiro[Lista3[0]][Lista3[1]] == 'X':
+                    Cont+=1
+                if Cont==len(Lista2):
+                    Afundados+=1
+            Cont=0
     return Afundados
 
-frota = {
-    "porta-aviões":[
-      [[1,5],[1,6],[1,7],[1,8]]
-    ],
-    "navio-tanque":[
-      [[6,1],[6,2],[6,3]],
-      [[4,7],[5,7],[6,7]]
-    ],
-    "contratorpedeiro":[
-      [[1,1],[2,1]],
-      [[2,3],[3,3]],
-      [[9,1],[9,2]]
-    ],
-    "submarino": [
-      [[0,3]],
-      [[4,5]],
-      [[8,9]],
-      [[8,4]]
-    ],
-}
-tabuleiro = [
-  [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 1, 0, 0, 0, 'X', 'X', 'X', 'X', 0],
-  [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 1, 1, 1, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-  [0, 1, 1, 0, 0, 0, 0, 0, 0, 0]
-]
-resultado = afundados(frota, tabuleiro)
-print(resultado)
+# frota = {
+#     "porta-aviões":[
+#       [[1,5],[1,6],[1,7],[1,8]]
+#     ],
+#     "navio-tanque":[
+#       [[6,1],[6,2],[6,3]],
+#       [[4,7],[5,7],[6,7]]
+#     ],
+#     "contratorpedeiro":[
+#       [[1,1],[2,1]],
+#       [[2,3],[3,3]],
+#       [[9,1],[9,2]]
+#     ],
+#     "submarino": [
+#       [[0,3]],
+#       [[4,5]],
+#       [[8,9]],
+#       [[8,4]]
+#     ],
+# }
+# tabuleiro = [
+#   [0, '-', '-', 1, 0, 0, 0, 0, 0, 0],
+#   [0, 1, 0, 0, 0, 'X', 'X', 'X', 'X', 0],
+#   [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 1, '-', '-', '-', '-', 0, 0],
+#   [0, '-', 0, 0, 0, 1, 0, 1, 0, 0],
+#   [0, 0, 0, 0, '-', 0, 0, 1, 0, 0],
+#   [0, 1, 1, 1, 0, 0, 0, 1, 0, 0],
+#   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#   [0, 0, 0, 0, 'X', 0, 0, 0, 0, 1],
+#   [0, 1, 1, '-', '-', '-', '-', '-', '-', '-']
+# ]
+# resultado = afundados(frota, tabuleiro)
+# print(resultado)
