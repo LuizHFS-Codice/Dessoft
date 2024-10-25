@@ -84,7 +84,7 @@ def faz_jogada(tabuleiro, Lin, Col):
 
 # pprint(tabuleiro)
 
-# Questão 4 (feita dia 24/10)
+# Questão 4 (Começada dia 24/10, terminada 25/10)
 
 #   1) iniciar o tabuleiro como uma lista de 10 por 10, sendo todos os valores 0
 #       2) para cada navio no dicionário da minha frota eu tenho que percorrer esse dicionário onde está suas posições e marcar como 1 no tabuleiro 
@@ -144,3 +144,49 @@ def posiciona_frota(frota):
 # resultado = posiciona_frota(frota)
 # print(resultado)
 #Teste-----------------------------------------------------------------
+# Questão 5 (Começada em 25/10)
+def afundados (frota,Tabuleiro):
+    Afundados=0#Afundados
+    Cont=0
+    for Lista1,Lista2 in frota.items():
+        for Lista3 in Lista2:
+            if Tabuleiro[Lista3[0]][Lista3[1]] == 'X':
+                Cont+=1
+            if Cont==len(Lista2):
+                Afundados+=1
+    return Afundados
+
+frota = {
+    "porta-aviões":[
+      [[1,5],[1,6],[1,7],[1,8]]
+    ],
+    "navio-tanque":[
+      [[6,1],[6,2],[6,3]],
+      [[4,7],[5,7],[6,7]]
+    ],
+    "contratorpedeiro":[
+      [[1,1],[2,1]],
+      [[2,3],[3,3]],
+      [[9,1],[9,2]]
+    ],
+    "submarino": [
+      [[0,3]],
+      [[4,5]],
+      [[8,9]],
+      [[8,4]]
+    ],
+}
+tabuleiro = [
+  [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 1, 0, 0, 0, 'X', 'X', 'X', 'X', 0],
+  [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+  [0, 1, 1, 1, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+  [0, 1, 1, 0, 0, 0, 0, 0, 0, 0]
+]
+resultado = afundados(frota, tabuleiro)
+print(resultado)
