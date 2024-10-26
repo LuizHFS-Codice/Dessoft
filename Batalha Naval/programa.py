@@ -7,7 +7,7 @@ from funcoes import afundados
 from funcoes import posicao_valida
 
 Tam=4 #Tamanho do Navio
-Embarcações=['submarino','contratorpedeiro','navio-tanque','porta-aviões']#Lista de Embarcações
+Embarcacoes=['submarino','contratorpedeiro','navio-tanque','porta-aviões']#Lista de Embarcações
 Pos=0
 Lin=0
 Col=0
@@ -21,8 +21,8 @@ frota = {
 contagem=0
 ListNavios=[]
 while Tam!=0:#Contagem usando o tamanho como diferenciador
-    print(f'Insira as informações referentes ao navio {Embarcações[Tam-1]} que possui tamanho {Tam}')
-    Embarc=Embarcações[Tam-1]#Embaracação do ciclo atual
+    print(f'Insira as informações referentes ao navio {Embarcacoes[Tam-1]} que possui tamanho {Tam}')
+    Embarc=Embarcacoes[Tam-1]#Embaracação do ciclo atual
 #-------------------------------------------------------------------------------------------------------   
     if Tam==4:  #Porta-Aviões
         Lin=int(input("Linha escolhida> "))
