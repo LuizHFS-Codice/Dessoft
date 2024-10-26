@@ -20,19 +20,22 @@ frota = {
     }
 contagem=0
 ListNavios=[]
+
+ # nosso loop pra posicionar as embarcações do jogo ( todas elas)
 while Tam!=0:#Contagem usando o tamanho como diferenciador
     Embarc=Embarcacoes[Tam-1]#Embaracação do ciclo atual
 #-------------------------------------------------------------------------------------------------------   
     if Tam==4:  #Porta-Aviões
-        print(f'Insira as informações referentes ao navio {Embarcacoes[Tam-1]} que possui tamanho {Tam}')
+        print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {Tam}')
         Lin=int(input("Linha escolhida> "))
         Col=int(input("Coluna Escolhida> "))
-        if Tam>1:
-            Ori=int(input("Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> "))
-            if Ori==1:
-                Ori='vertical'
-            else:
-                Ori='horizontal'
+        Ori=int(input("Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> "))
+        if Ori==1:
+             
+            Ori='vertical'
+        else:
+            
+            Ori='horizontal'
         Check1=posicao_valida(frota,Lin,Col,Ori,Tam)
         if Check1 ==False: 
 #--------------------------------------------------------------------------------------------------------
