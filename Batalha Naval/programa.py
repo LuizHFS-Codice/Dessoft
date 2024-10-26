@@ -21,24 +21,23 @@ frota = {
 contagem=0
 ListNavios=[]
 while Tam!=0:#Contagem usando o tamanho como diferenciador
-    Embarc=Embarcacoes[Tam-1]#Embaracação do ciclo atual
+    Embarc=Embarcacoes[Tam-1]#Embarcação do ciclo atual
 #-------------------------------------------------------------------------------------------------------   
     if Tam==4:  #Porta-Aviões
-        print(f'Insira as informações referentes ao navio {Embarcacoes[Tam-1]} que possui tamanho {Tam}')
+        print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {Tam}')
         Lin=int(input("Linha escolhida> "))
         Col=int(input("Coluna Escolhida> "))
-        if Tam>1:
-            Ori=int(input("Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> "))
-            if Ori==1:
-                Ori='vertical'
-            else:
-                Ori='horizontal'
+        Ori=int(input("Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> "))
+        if Ori==1:
+            Ori='vertical'
+        else:
+            Ori='horizontal'
         Check1=posicao_valida(frota,Lin,Col,Ori,Tam)
         if Check1 ==False: 
 #--------------------------------------------------------------------------------------------------------
             while Check1 != True:#Caso não seja uma posição valida
                 print('Esta posição não está válida!')
-                print(f'Insira as informações referentes ao navio {Embarcacoes[Tam-1]} que possui tamanho {Tam}')
+                print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {Tam}')
                 Lin=int(input("Linha escolhida> "))
                 Col=int(input("Coluna Escolhida> "))
                 if Tam>1:
@@ -55,7 +54,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
 #-------------------------------------------------------------------------------------------------------- 
     elif Tam==3: #Navio_tanque
         while contagem<2:
-            print(f'Insira as informações referentes ao navio {Embarcacoes[Tam-1]} que possui tamanho {Tam}')
+            print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {Tam}')
             Lin=int(input("Linha escolhida> "))
             Col=int(input("Coluna Escolhida> "))
             Ori=int(input("Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> "))
@@ -68,7 +67,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
 #-------    ---------------------------------------------------------------------------------------------
                 while Check1 != True:#Caso não seja uma posição valida
                     print('Esta posição não está válida!')
-                    print(f'Insira as informações referentes ao navio {Embarcacoes[Tam-1]} que possui tamanho {Tam}')
+                    print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {Tam}')
                     Lin=int(input("Linha escolhida> "))
                     Col=int(input("Coluna Escolhida> "))
                     Ori=int(input("Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> "))
@@ -86,7 +85,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
 #-------------------------------------------------------------------------------------------------------- 
     elif Tam==2: #Contra-Torpedeiro
         while contagem<3:
-            print(f'Insira as informações referentes ao navio {Embarcacoes[Tam-1]} que possui tamanho {Tam}')
+            print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {Tam}')
             Lin=int(input("Linha escolhida> "))
             Col=int(input("Coluna Escolhida> "))
             Ori=int(input("Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> "))
@@ -99,7 +98,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
 #-------    ---------------------------------------------------------------------------------------------
                 while Check1 != True:#Caso não seja uma posição valida
                     print('Esta posição não está válida!')
-                    print(f'Insira as informações referentes ao navio {Embarcacoes[Tam-1]} que possui tamanho {Tam}')
+                    print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {Tam}')
                     Lin=int(input("Linha escolhida> "))
                     Col=int(input("Coluna Escolhida> "))
                     Ori=int(input("Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> "))
@@ -117,7 +116,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
 #-------------------------------------------------------------------------------------------------------- 
     elif Tam==1: #submarino
         while contagem<4:
-            print(f'Insira as informações referentes ao navio {Embarcacoes[Tam-1]} que possui tamanho {Tam}')
+            print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {Tam}')
             Lin=int(input("Linha escolhida> "))
             Col=int(input("Coluna Escolhida> "))
             Ori='vertical'
@@ -126,7 +125,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
 #-------    ---------------------------------------------------------------------------------------------
                 while Check1 != True:#Caso não seja uma posição valida
                     print('Esta posição não está válida!')
-                    print(f'Insira as informações referentes ao navio {Embarcacoes[Tam-1]} que possui tamanho {Tam}')
+                    print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {Tam}')
                     Lin=int(input("Linha escolhida> "))
                     Col=int(input("Coluna Escolhida> "))
                     Ori='vertical'
