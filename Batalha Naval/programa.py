@@ -50,7 +50,7 @@ while Tam!=0:#Contagem usando o tamanho como diferenciador
                 Check1=posicao_valida(frota,Lin,Col,Ori,Tam)
         else:
 #--------------------------------------------------------------------------------------------------------
-            Pos=define_posicoes(Lin,Col,Ori,Tam)#Posição da Embarcação
+            Pos=[define_posicoes(Lin,Col,Ori,Tam)]#Posição da Embarcação
             frota[Embarc]+=Pos#Colocando a posição da embarcação dentro da Frota
 #-------------------------------------------------------------------------------------------------------- 
     elif Tam==3: #Navio_tanque
