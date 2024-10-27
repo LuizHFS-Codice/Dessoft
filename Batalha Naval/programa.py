@@ -6,6 +6,7 @@ from funcoes import faz_jogada
 from funcoes import posiciona_frota
 from funcoes import afundados
 from funcoes import posicao_valida
+import random
 #------------------------------------
 #Condições Iniciais------------------
 tamanhos=[4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
@@ -143,7 +144,9 @@ jogadax=0
 jogaday=0
 jogadas=[]
 listajogadas=[]
+jogadasoponente=[]
 casualidades=0
+baixas=0
 while jogando:
     
     #---------------------------------------------------------------------------------------------------
@@ -196,3 +199,22 @@ while jogando:
     if casualidades==10:
         print('Parabéns! Você derrubou todos os navios do seu oponente!')
         jogando=False
+    #--------------------------------------------------------------------------------------------------------
+    #Jogadas do oponente
+    else:
+        jogadax=random.randint(0,9)
+        jogaday=random.randint(0,9)
+        jogadas=[jogadax,jogaday]
+        while jogadas in jogadasoponente:
+            jogadax=random.randint(0,9)
+            jogaday=random.randint(0,9)
+            jogadas=[jogadax,jogaday]
+        jogadasoponente.append(jogadas)
+    #---------------------------------------------------------------------------------------------------------
+    #Consequencias da jogada do oponente
+        print(f'Seu oponente está atacando na linha {jogadas[0]} e coluna {jogadas[1]}')
+        Jogador=faz_jogada(Jogador,jogadas[0],jogadas[1])
+        baixas=afundados(frota,Jogador)
+        if baixas==10:
+            print('Xi! O oponente derrubou toda a sua frota =(')
+            jogando=False
