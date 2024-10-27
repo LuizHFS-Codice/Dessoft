@@ -200,21 +200,65 @@ while jogando:
         print('Parabéns! Você derrubou todos os navios do seu oponente!')
         jogando=False
     #--------------------------------------------------------------------------------------------------------
-    #Jogadas do oponente
+    # #Jogadas do oponente
+    # else:
+    #     jogadax=random.randint(0,9)
+    #     jogaday=random.randint(0,9)
+    #     jogadas=[jogadax,jogaday]
+    #     while jogadas in jogadasoponente:
+    #         jogadax=random.randint(0,9)
+    #         jogaday=random.randint(0,9)
+    #         jogadas=[jogadax,jogaday]
+    #     jogadasoponente.append(jogadas)
+    # #---------------------------------------------------------------------------------------------------------
+    # #Consequencias da jogada do oponente
+    #     print(f'Seu oponente está atacando na linha {jogadas[0]} e coluna {jogadas[1]}')
+    #     Jogador=faz_jogada(Jogador,jogadas[0],jogadas[1])
+    #     baixas=afundados(frota,Jogador)
+    #     if baixas==10:
+    #         print('Xi! O oponente derrubou toda a sua frota =(')
+    #         jogando=False
+
+# Questão 9 (feita dia 27/10)
+    
+    #ínicio 
+
     else:
-        jogadax=random.randint(0,9)
-        jogaday=random.randint(0,9)
-        jogadas=[jogadax,jogaday]
+        # sorteio da linha e coluna para a jogada do meu opnente 
+
+        jogadax = random.randint(0,9)
+        jogaday = random.randint(0,9)
+        jogadas = [jogadax, jogaday]
+
+        #verificar se jogada ja foi feita anteriormente
+
         while jogadas in jogadasoponente:
-            jogadax=random.randint(0,9)
-            jogaday=random.randint(0,9)
-            jogadas=[jogadax,jogaday]
+
+            jogadax = random.randint(0,9)
+            jogaday = random.randint(0, 9)
+            jogadas = [jogadax, jogaday]
+
+        # add a jogada do oponenete a listade jogadas que já foi feita
+
         jogadasoponente.append(jogadas)
-    #---------------------------------------------------------------------------------------------------------
-    #Consequencias da jogada do oponente
+
+        #mostrar a mensagem de ataque do oponente 
+
         print(f'Seu oponente está atacando na linha {jogadas[0]} e coluna {jogadas[1]}')
-        Jogador=faz_jogada(Jogador,jogadas[0],jogadas[1])
-        baixas=afundados(frota,Jogador)
-        if baixas==10:
-            print('Xi! O oponente derrubou toda a sua frota =(')
-            jogando=False
+
+        #atualizar o tabuleiro do jogador com a jogada do meu oponente 
+
+        Jogador = faz_jogada(Jogador, jogadas[0], jogadas[1])
+
+        #verificar se o oponenete afundou  todas as embarcações do jogador 
+
+        baixas = faz_jogada(Jogador, jogadas[0], jogadas[1])
+
+        if baixas == 10:
+            print("Xi! O oponente derrubou toda a sua frota =(")
+            jogando = False
+
+# terminada a questão 9 ----> OBS: Preciso testar  com calama os casos 
+
+
+     
