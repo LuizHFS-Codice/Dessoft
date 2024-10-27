@@ -82,3 +82,35 @@ for tamanho in tamanhos:
             frota[Embarc]+=ListNavios #Colocando a posição da embarcação dentro da Frota
 #-----------------------------------------------------------------------------------------------------------
 print(frota)
+
+# sugestão de melhora pra simplificar de forma que ao invés de ter um bloco só 
+# pro submarino, usar um if dentro do bloco que já temos para determinar a orientacao
+
+# Tentativa 1:
+
+def obter_input_valido(Embarc, tamnho):
+    while True:
+
+        print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {tamanho}')
+
+        Lin = int(input("Linha escolhida>"))
+        Col = int(input('Coluna Escolhida>'))
+
+        # automaticamnte saber a orientacao para o submarino
+
+        if tamnho == 1:
+            Ori = "vertical"
+
+        else:
+
+            Ori = int(input('Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> '))
+            Ori = "vertical" if Ori == 1 else "horizontal"
+
+        if posicao_valida(frota, Lin, Col, Ori, tamnho):
+            return Lin, Col, Ori
+        
+        else:
+
+            print("Esta posição não está válida!")
+
+
