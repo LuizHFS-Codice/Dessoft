@@ -145,6 +145,7 @@ jogadas=[]
 listajogadas=[]
 casualidades=0
 while jogando:
+    
     #---------------------------------------------------------------------------------------------------
     #Função de mostrar os dois tabuleiros juntos, fornecido pelo PrairieLearn
     def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
@@ -157,32 +158,33 @@ while jogando:
             oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in tabuleiro_oponente[linha]])
             texto += f'{linha}| {jogador_info}|     {linha}| {oponente_info}|\n'
         return texto
+    print(monta_tabuleiros(Jogador,Oponente))
     #-----------------------------------------------------------------------------------------------------
     #jogadas eixo x
-    jogadax=int(input('Selecione uma linha de 0 a 9> '))
+    jogadax=int(input('Jogador, qual linha deseja atacar? '))
     while jogadax not in range(0,10):
         print('Linha inválida!')
-        jogadax=int(input('Selecione uma linha de 0 a 9> '))
+        jogadax=int(input('Jogador, qual linha deseja atacar? '))
     #jogadas eixo y
-    jogaday=int(input('Selecione uma coluna de 0 a 9> '))
+    jogaday=int(input('Jogador, qual coluna deseja atacar? '))
     while jogaday not in range(0,10):
         print('Coluna inválida!')
-        jogaday=int(input('Selecione uma coluna de 0 a 9> '))
+        jogaday=int(input('Jogador, qual coluna deseja atacar? '))
     #------------------------------------------------------------------------------------------------------
     #Check para jogadas repetidas
     jogadas=[jogadax,jogaday]
     while jogadas in listajogadas:
         print(f'A posição linha {jogadax} e coluna {jogaday} já foi informada anteriormente!')
     #Repetição da jogada do eixo x
-        jogadax=int(input('Selecione uma linha de 0 a 9> '))
+        jogadax=int(input('Jogador, qual linha deseja atacar? '))
         while jogadax not in range(0,10):
             print('Linha inválida!')
-            jogadax=int(input('Selecione uma linha de 0 a 9> '))
+            jogadax=int(input('Jogador, qual linha deseja atacar? '))
     #Repetição da jogadas eixo y
-        jogaday=int(input('Selecione uma coluna de 0 a 9> '))
+        jogaday=int(input('Jogador, qual coluna deseja atacar? '))
         while jogaday not in range(0,10):
             print('Coluna inválida!')
-            jogaday=int(input('Selecione uma coluna de 0 a 9> '))
+            jogaday=int(input('Jogador, qual coluna deseja atacar? '))
         jogadas=[jogadax,jogaday]
     listajogadas.append(jogadas)
     #-------------------------------------------------------------------------------------------------------
@@ -194,5 +196,3 @@ while jogando:
     if casualidades==10:
         print('Parabéns! Você derrubou todos os navios do seu oponente!')
         jogando=False
-    else:
-        print(monta_tabuleiros(Jogador,Oponente))
