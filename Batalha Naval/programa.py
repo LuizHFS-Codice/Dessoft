@@ -166,7 +166,7 @@ while jogando:
     #jogadas eixo y
     jogaday=int(input('Selecione uma coluna de 0 a 9> '))
     while jogaday not in range(0,10):
-        print('Linha inválida!')
+        print('Coluna inválida!')
         jogaday=int(input('Selecione uma coluna de 0 a 9> '))
     #------------------------------------------------------------------------------------------------------
     #Check para jogadas repetidas
@@ -181,7 +181,7 @@ while jogando:
     #Repetição da jogadas eixo y
         jogaday=int(input('Selecione uma coluna de 0 a 9> '))
         while jogaday not in range(0,10):
-            print('Linha inválida!')
+            print('Coluna inválida!')
             jogaday=int(input('Selecione uma coluna de 0 a 9> '))
         jogadas=[jogadax,jogaday]
     listajogadas.append(jogadas)
