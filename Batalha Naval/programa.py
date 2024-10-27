@@ -78,7 +78,8 @@ for tamanho in tamanhos:
     Pos = define_posicoes(Lin, Col, Ori, tamanho)
     frota[Embarc].append(Pos)
 #-----------------------------------------------------------------------------------------------------------
-print(frota)
+# print(frota)
+#-----------------------------------------------------------------------------------------------------------
 
 # sugestão de melhora pra simplificar de forma que ao invés de ter um bloco só 
 # pro submarino, usar um if dentro do bloco que já temos para determinar a orientacao
@@ -109,5 +110,89 @@ print(frota)
 #         else:
 
 #             print("Esta posição não está válida!")
+#----------------------------------------------------------------------------------------------------
+#Frota do Jogador
+Jogador=posiciona_frota(frota)
+#----------------------------------------------------------------------------------------------------
+#Frota Oponente
+frota_oponente = {
+    'porta-aviões': [
+        [[9, 1], [9, 2], [9, 3], [9, 4]]
+    ],
+    'navio-tanque': [
+        [[6, 0], [6, 1], [6, 2]],
+        [[4, 3], [5, 3], [6, 3]]
+    ],
+    'contratorpedeiro': [
+        [[1, 6], [1, 7]],
+        [[0, 5], [1, 5]],
+        [[3, 6], [3, 7]]
+    ],
+    'submarino': [
+        [[2, 7]],
+        [[0, 6]],
+        [[9, 7]],
+        [[7, 6]]
+    ]
+}
+Oponente=posiciona_frota(frota_oponente)
+#-------------------------------------------------------------------------------------------------------
+#Loop de jogo
+jogando=True
+jogadax=0
+jogaday=0
+jogadas=[]
+listajogadas=[]
+casualidades=0
+while jogando:
+    #---------------------------------------------------------------------------------------------------
+    #Função de mostrar os dois tabuleiros juntos, fornecido pelo PrairieLearn
+    def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
+        texto = ''
+        texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
+        texto += '_______________________________      _______________________________\n'
 
-
+        for linha in range(len(tabuleiro_jogador)):
+            jogador_info = '  '.join([str(item) for item in tabuleiro_jogador[linha]])
+            oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in tabuleiro_oponente[linha]])
+            texto += f'{linha}| {jogador_info}|     {linha}| {oponente_info}|\n'
+        return texto
+    #-----------------------------------------------------------------------------------------------------
+    #jogadas eixo x
+    jogadax=int(input('Selecione uma linha de 0 a 9> '))
+    while jogadax not in range(0,10):
+        print('Linha inválida!')
+        jogadax=int(input('Selecione uma linha de 0 a 9> '))
+    #jogadas eixo y
+    jogaday=int(input('Selecione uma coluna de 0 a 9> '))
+    while jogaday not in range(0,10):
+        print('Linha inválida!')
+        jogaday=int(input('Selecione uma coluna de 0 a 9> '))
+    #------------------------------------------------------------------------------------------------------
+    #Check para jogadas repetidas
+    jogadas=[jogadax,jogaday]
+    while jogadas in listajogadas:
+        print(f'A posição linha {jogadax} e coluna {jogaday} já foi informada anteriormente!')
+    #Repetição da jogada do eixo x
+        jogadax=int(input('Selecione uma linha de 0 a 9> '))
+        while jogadax not in range(0,10):
+            print('Linha inválida!')
+            jogadax=int(input('Selecione uma linha de 0 a 9> '))
+    #Repetição da jogadas eixo y
+        jogaday=int(input('Selecione uma coluna de 0 a 9> '))
+        while jogaday not in range(0,10):
+            print('Linha inválida!')
+            jogaday=int(input('Selecione uma coluna de 0 a 9> '))
+        jogadas=[jogadax,jogaday]
+    listajogadas.append(jogadas)
+    #-------------------------------------------------------------------------------------------------------
+    #Efeito no tabuleiro oponente
+    Oponente=faz_jogada(Oponente,jogadas[0],jogadas[1])
+    #-------------------------------------------------------------------------------------------------------
+    #Check para finalizar o jogo
+    casualidades=afundados(frota_oponente,Oponente)
+    if casualidades==10:
+        print('Parabéns! Você derrubou todos os navios do seu oponente!')
+        jogando=False
+    else:
+        print(monta_tabuleiros(Jogador,Oponente))
