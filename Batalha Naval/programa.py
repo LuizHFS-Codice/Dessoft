@@ -47,12 +47,14 @@ for tamanho in tamanhos:
         else:
             Ori='horizontal'
     else:
-        Ori='vertical'
-    Check1=posicao_valida(frota,Lin,Col,Ori,tamanho)
-#Checagem
-#----------------------------------------------------------------------------------------------------------
-    if Check1 == False: 
-        while Check1 != True: #Caso não seja uma posição valida
+        Ori='vertical' #lembrar que o sub é sempre vertical 
+#     Check1=posicao_valida(frota,Lin,Col,Ori,tamanho)
+# #Checagem
+# #----------------------------------------------------------------------------------------------------------
+#     if Check1 == False: 
+#         while Check1 != True: #Caso não seja uma posição valida
+    while not posicao_valida(frota,Lin,Col,Ori,tamanho): # tentar simplificar a verificacao se essa posicao é válida
+             
             print('Esta posição não está válida!')
             print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {tamanho}')
             Lin=int(input("Linha escolhida> "))
@@ -65,11 +67,16 @@ for tamanho in tamanhos:
                     Ori='horizontal'
             else:
                 Ori='vertical'
-            Check1=posicao_valida(frota,Lin,Col,Ori,tamanho)
-    else:
-        Pos=define_posicoes(Lin,Col,Ori,tamanho) #Posição da Embarcação
-        ListNavios.append(Pos)
-        frota[Embarc]+=ListNavios #Colocando a posição da embarcação dentro da Frota
+    #         Check1=posicao_valida(frota,Lin,Col,Ori,tamanho)
+    # else:
+    #     Pos=define_posicoes(Lin,Col,Ori,tamanho) #Posição da Embarcação
+    #     ListNavios.append(Pos)
+    #     frota[Embarc]+=ListNavios #Colocando a posição da embarcação dentro da Frota
+
+    # add depois da vericação a posição válida á frota 
+
+    Pos = define_posicoes(Lin, Col, Ori, tamanho)
+    frota[Embarc].append(Pos)
 #-----------------------------------------------------------------------------------------------------------
 print(frota)
 
