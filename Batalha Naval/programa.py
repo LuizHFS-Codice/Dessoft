@@ -7,6 +7,7 @@ from funcoes import posiciona_frota
 from funcoes import afundados
 from funcoes import posicao_valida
 import random
+random.seed(2)
 #------------------------------------
 #Condições Iniciais------------------
 tamanhos=[4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
@@ -252,7 +253,8 @@ while jogando:
 
         #verificar se o oponenete afundou  todas as embarcações do jogador 
 
-        baixas = faz_jogada(Jogador, jogadas[0], jogadas[1])
+        # baixas = faz_jogada(Jogador, jogadas[0], jogadas[1]) Essa função foi chamada mais uma vez, ao invés de afundados, o que não precisava.
+        baixas=afundados(frota,Jogador)
 
         if baixas == 10:
             print("Xi! O oponente derrubou toda a sua frota =(")
