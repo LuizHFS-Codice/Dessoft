@@ -32,54 +32,44 @@ for tamanho in tamanhos:
         Embarc=Embarcacoes[1] #Contra Torpedeiro
     elif tamanho==1:
         Embarc=Embarcacoes[0] #Submarino
-        ListNavios=[]
-        print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {tamanho}')
-        Lin=int(input("Linha escolhida> "))
-        Col=int(input("Coluna Escolhida> "))
-        Ori='vertical'
-        Check1=posicao_valida(frota,Lin,Col,Ori,tamanho)
-#----------------------------------------------------------------------------------------------------
-        if Check1 == False: 
-                while Check1 != True: #Caso não seja uma posição valida
-                    print('Esta posição não está válida!')
-                    print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {tamanho}')
-                    Lin=int(input("Linha escolhida> "))
-                    Col=int(input("Coluna Escolhida> "))
-                    Ori='vertical'
-                    Check1=posicao_valida(frota,Lin,Col,Ori,tamanho)
-        else:
-            Pos=define_posicoes(Lin,Col,Ori,tamanho) #Posição da Embarcação
-            ListNavios.append(Pos)
+#Posição X,Y
 #---------------------------------------------------------------------------------------------------------
-        frota[Embarc]+=ListNavios #Colocando a posição da embarcação dentro da Frota
+    ListNavios=[]
+    print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {tamanho}')
+    Lin=int(input("Linha escolhida> "))
+    Col=int(input("Coluna Escolhida> "))
+#Orientação
+#---------------------------------------------------------------------------------------------------------
     if tamanho>1:
-        ListNavios=[]
-        print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {tamanho}')
-        Lin=int(input("Linha escolhida> "))
-        Col=int(input("Coluna Escolhida> "))
         Ori=int(input("Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> "))
         if Ori==1:
             Ori='vertical'
         else:
             Ori='horizontal'
-        Check1=posicao_valida(frota,Lin,Col,Ori,tamanho)
+    else:
+        Ori='vertical'
+    Check1=posicao_valida(frota,Lin,Col,Ori,tamanho)
+#Checagem
 #----------------------------------------------------------------------------------------------------------
-        if Check1 == False: 
-            while Check1 != True: #Caso não seja uma posição valida
-                print('Esta posição não está válida!')
-                print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {tamanho}')
-                Lin=int(input("Linha escolhida> "))
-                Col=int(input("Coluna Escolhida> "))
+    if Check1 == False: 
+        while Check1 != True: #Caso não seja uma posição valida
+            print('Esta posição não está válida!')
+            print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {tamanho}')
+            Lin=int(input("Linha escolhida> "))
+            Col=int(input("Coluna Escolhida> "))
+            if tamanho>1:
                 Ori=int(input("Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> "))
                 if Ori==1:
                     Ori='vertical'
                 else:
                     Ori='horizontal'
-                Check1=posicao_valida(frota,Lin,Col,Ori,tamanho)
-        else:
-            Pos=define_posicoes(Lin,Col,Ori,tamanho) #Posição da Embarcação
-            ListNavios.append(Pos)
-            frota[Embarc]+=ListNavios #Colocando a posição da embarcação dentro da Frota
+            else:
+                Ori='vertical'
+            Check1=posicao_valida(frota,Lin,Col,Ori,tamanho)
+    else:
+        Pos=define_posicoes(Lin,Col,Ori,tamanho) #Posição da Embarcação
+        ListNavios.append(Pos)
+        frota[Embarc]+=ListNavios #Colocando a posição da embarcação dentro da Frota
 #-----------------------------------------------------------------------------------------------------------
 print(frota)
 
@@ -88,29 +78,29 @@ print(frota)
 
 # Tentativa 1:
 
-def obter_input_valido(Embarc, tamnho):
-    while True:
+# def obter_input_valido(Embarc, tamnho):
+#     while True:
 
-        print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {tamanho}')
+#         print(f'Insira as informações referentes ao navio {Embarc} que possui tamanho {tamanho}')
 
-        Lin = int(input("Linha escolhida>"))
-        Col = int(input('Coluna Escolhida>'))
+#         Lin = int(input("Linha escolhida>"))
+#         Col = int(input('Coluna Escolhida>'))
 
-        # automaticamnte saber a orientacao para o submarino
+#         # automaticamnte saber a orientacao para o submarino
 
-        if tamnho == 1:
-            Ori = "vertical"
+#         if tamnho == 1:
+#             Ori = "vertical"
 
-        else:
+#         else:
 
-            Ori = int(input('Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> '))
-            Ori = "vertical" if Ori == 1 else "horizontal"
+#             Ori = int(input('Rotação da Embarcação (1 (Vertical) ou 2 (Horizontal))> '))
+#             Ori = "vertical" if Ori == 1 else "horizontal"
 
-        if posicao_valida(frota, Lin, Col, Ori, tamnho):
-            return Lin, Col, Ori
+#         if posicao_valida(frota, Lin, Col, Ori, tamnho):
+#             return Lin, Col, Ori
         
-        else:
+#         else:
 
-            print("Esta posição não está válida!")
+#             print("Esta posição não está válida!")
 
 
