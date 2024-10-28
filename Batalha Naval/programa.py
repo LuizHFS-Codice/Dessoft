@@ -7,7 +7,7 @@ from funcoes import posiciona_frota
 from funcoes import afundados
 from funcoes import posicao_valida
 import random
-random.seed(2)
+
 #------------------------------------
 #Condições Iniciais------------------
 tamanhos=[4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
