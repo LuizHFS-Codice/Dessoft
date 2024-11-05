@@ -7,7 +7,7 @@ pygame.init()
 Largura=824
 Altura=596
 
-LargNav=100
+LargNav=150
 AltNav=50
 
 Janela=pygame.display.set_mode((Largura,Altura))
@@ -35,8 +35,9 @@ class Nave(pygame.sprite.Sprite):
         self.speedy=0
 
     def update(self):
-        self.rect.x+=self.speedx
-        self.rect.y+=self.speedy
+        self.rect.x+=self.speedx#Movimento no Eixo X
+        self.rect.y+=self.speedy#Movimento no Eixo Y
+#Limites
         if self.rect.left<0:
             self.rect.left=0
         if self.rect.right>Largura:
@@ -53,18 +54,48 @@ Sprites.add(jogador)
 
 FPS=30
 game=True
-
+Vx=10
+Vy=6
+movimento=0
 
 while game:
     relógio.tick(FPS)
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             game=False
-    Sprites.update()
+#Começar Movimento
+        if event.type==pygame.KEYDOWN:
+            if event.key==pygame.K_LEFT:
+                jogador.speedx-=Vx
+            if event.key==pygame.K_RIGHT:
+                jogador.speedx+=Vx
+            if event.key==pygame.K_UP:
+                jogador.speedy-=Vy
+            if event.key==pygame.K_DOWN:
+                jogador.speedy+=Vy
+#Parar Movimento
+        if event.type==pygame.KEYUP:
+            if event.key==pygame.K_LEFT:
+                jogador.speedx+=Vx
+            if event.key==pygame.K_RIGHT:
+                jogador.speedx-=Vx
+            if event.key==pygame.K_UP:
+                jogador.speedy+=Vy
+            if event.key==pygame.K_DOWN:
+                jogador.speedy-=Vy
 
-    rolagem=-6
+    Sprites.update()
+    #Fundo
+    movimento=0
+    rolagem-=1
     Janela.fill((0,0,0))
-    Janela.blit(SkyBox,(0,0))
+    while movimento<fundo:
+        Janela.blit(SkyBox,(SkyBox.get_width()*movimento+rolagem,0))
+        movimento+=1
+    rolagem-=2
+    if abs(rolagem)>SkyBox.get_width():
+        rolagem=0
+
     Sprites.draw(Janela)
 
     pygame.display.update()
