@@ -20,6 +20,7 @@ SkyBox=pygame.image.load('Assets/Imagens/Skybox.png').convert()
 rolagem=0
 fundo=math.ceil(Largura /SkyBox.get_width()) +1
 
+#Classe da Nave
 class Nave(pygame.sprite.Sprite):
     def __init__(self,img):
         pygame.sprite.Sprite.__init__(self)
@@ -54,8 +55,8 @@ Sprites.add(jogador)
 
 FPS=30
 game=True
-Vx=10
-Vy=6
+Vx=15
+Vy=9
 movimento=0
 
 while game:
