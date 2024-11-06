@@ -6,7 +6,7 @@ pygame.display.set_caption('Voando pelo espaço')
 
 game=True
 
-Ptela=pygame.image.load('Assets/Imagens/Capa.png').convert_alpha()
+Ptela=pygame.image.load('Assets/Imagens/Capa.png')
 
 while game:
     for event in pygame.event.get():
