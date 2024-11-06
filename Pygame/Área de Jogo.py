@@ -13,17 +13,19 @@ AltNav=50
 Janela=pygame.display.set_mode((Largura,Altura))
 pygame.display.set_caption('Space Flight')
 
-NaveImg=pygame.image.load('Assets/Imagens/Nave.png').convert()
+NaveImg=pygame.image.load('Assets/Imagens/Nave.png').convert_alpha()
 relógio=pygame.time.Clock()
 
 SkyBox=pygame.image.load('Assets/Imagens/Skybox.png').convert()
+SkyBox=pygame.transform.scale(SkyBox,(Largura,Altura))
 rolagem=0
 fundo=math.ceil(Largura /SkyBox.get_width()) +1
 
+#Classe da Nave
 class Nave(pygame.sprite.Sprite):
     def __init__(self,img):
         pygame.sprite.Sprite.__init__(self)
-        self.image=pygame.image.load('Assets/Imagens/Nave.png').convert()
+        self.image=pygame.image.load('Assets/Imagens/Nave.png').convert_alpha()
         self.image=pygame.transform.scale(self.image,(LargNav,AltNav))
         self.rect=self.image.get_rect()
         self.rect.left=0
@@ -54,8 +56,8 @@ Sprites.add(jogador)
 
 FPS=30
 game=True
-Vx=10
-Vy=6
+Vx=15
+Vy=9
 movimento=0
 
 while game:
