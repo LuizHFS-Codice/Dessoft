@@ -97,7 +97,7 @@ while game:
     rolagem-=2
     if abs(rolagem)>SkyBox.get_width():
         rolagem=0
-
+    
     Sprites.draw(Janela)
 
     pygame.display.update()
