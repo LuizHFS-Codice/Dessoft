@@ -13,7 +13,9 @@ AltNav=50
 LargBala=20
 AltBala=10
 
+
 #           Configurações Jogo
+
 
 #tempo no jogo
 relógio=pygame.time.Clock()

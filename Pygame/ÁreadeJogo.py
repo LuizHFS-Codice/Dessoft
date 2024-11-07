@@ -23,7 +23,7 @@ NaveImg=pygame.transform.scale(NaveImg,(LargNav,AltNav))
 SkyBox = pygame.image.load('Assets/Imagens/Skybox.png').convert()
 SkyBox = pygame.transform.scale(SkyBox,(Largura,Altura))
 
-#iamgem da bala
+#imagem da bala
 Balaimg=pygame.image.load('Assets/Imagens/Bala.png').convert()
 Balaimg=pygame.transform.scale(Balaimg,(LargBala,AltBala))
 
