@@ -1,20 +1,35 @@
-#from PrimeiraTela import *
 import pygame
 import random
-import math
+from math import *
 from Classes import *
 from Config import *
+#from PrimeiraTela import *
 from Assets import *
 
 pygame.init()
+
 game=True
 
 Janela=pygame.display.set_mode((Largura,Altura))
 pygame.display.set_caption('Space Flight')
 
+#           Imagens
+
+#imagem da nave
+NaveImg=pygame.image.load('Assets/Imagens/Nave.png').convert_alpha()
+NaveImg=pygame.transform.scale(NaveImg,(LargNav,AltNav))
+
+#imagem da tela de fundo
+SkyBox = pygame.image.load('Assets/Imagens/Skybox.png').convert()
+SkyBox = pygame.transform.scale(SkyBox,(Largura,Altura))
+
+#iamgem da bala
+Balaimg=pygame.image.load('Assets/Imagens/Bala.png').convert()
+Balaimg=pygame.transform.scale(Balaimg,(LargBala,AltBala))
+
 #tela rolando para esquerda
 rolagem=0
-fundo=math.ceil(Largura /SkyBox.get_width()) +1
+fundo=ceil(Largura/SkyBox.get_width()) +1
 
 #grupo de sprites
 Sprites=pygame.sprite.Group()
@@ -23,6 +38,11 @@ Balas=pygame.sprite.Group()
 #Jogador
 jogador = navezinha(NaveImg,Sprites,Balas,Balaimg)
 Sprites.add(jogador)
+
+FPS=30
+Vx=15
+Vy=9
+movimento=0
 
 while game:
     relógio.tick(FPS)
