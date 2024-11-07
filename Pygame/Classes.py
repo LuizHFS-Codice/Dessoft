@@ -1,13 +1,7 @@
+
 import pygame
-from ÁreadeJogo import *
-#from PrimeiraTela import *
 import random
-
-Largura=824
-Altura=596
-
-LargNav=150
-AltNav=50
+from Config import *
 
 class navezinha(pygame.sprite.Sprite):
     def __init__(self,NaveImg,Sprites,Balas,Balaimg):
@@ -97,7 +91,7 @@ class InimigoVoa(pygame.sprite.Sprite):
     def update(self):
         #Movimento do inimigo voador
         while self.rect.right>Largura:
-            self.speedx-=Vx
+            self.speedx-= Vx
         movimento=random.randint(1,3)
         if movimento==1:
             self.rect.x+=random.randint(-Vx,Vx)
