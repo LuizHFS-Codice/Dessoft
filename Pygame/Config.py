@@ -30,9 +30,6 @@ Balaimg=pygame.transform.scale(Balaimg,(LargBala,AltBala))
 
 #           Configurações Jogo
 
-Janela=pygame.display.set_mode((Largura,Altura))
-pygame.display.set_caption('Space Flight')
-
 FPS=30
 
 Vx=15

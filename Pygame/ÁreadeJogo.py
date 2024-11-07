@@ -9,6 +9,9 @@ from Assets import *
 pygame.init()
 game=True
 
+Janela=pygame.display.set_mode((Largura,Altura))
+pygame.display.set_caption('Space Flight')
+
 #tela rolando para esquerda
 rolagem=0
 fundo=math.ceil(Largura /SkyBox.get_width()) +1
