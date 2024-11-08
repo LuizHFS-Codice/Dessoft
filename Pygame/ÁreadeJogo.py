@@ -24,8 +24,12 @@ SkyBox = pygame.image.load('Assets/Imagens/Skybox.png').convert()
 SkyBox = pygame.transform.scale(SkyBox,(Largura,Altura))
 
 #imagem da bala
-Balaimg=pygame.image.load('Assets/Imagens/Bala.png').convert()
+Balaimg=pygame.image.load('Assets/Imagens/Bala.png').convert_alpha()
 Balaimg=pygame.transform.scale(Balaimg,(LargBala,AltBala))
+
+#Imagem do Inimigo Voador
+IniVoaImg=pygame.image.load('Assets/Imagens/InimigoVoa.png').convert_alpha()
+IniVoaImg=pygame.transform.scale(IniVoaImg,(LargNav,AltNav))
 
 #tela rolando para esquerda
 rolagem=0
@@ -39,9 +43,11 @@ Balas=pygame.sprite.Group()
 jogador = navezinha(NaveImg,Sprites,Balas,Balaimg)
 Sprites.add(jogador)
 
+#Inimigo Voador
+InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas,Balaimg)
+Sprites.add(InimigoVoador)
+
 FPS=30
-Vx=15
-Vy=9
 movimento=0
 
 while game:
@@ -53,26 +59,40 @@ while game:
 #Começar Movimento
         if event.type==pygame.KEYDOWN:
             if event.key==pygame.K_LEFT:
-                jogador.speedx-=Vx
+                jogador.speedx-=Vx*2
             if event.key==pygame.K_RIGHT:
-                jogador.speedx+=Vx
+                jogador.speedx+=Vx*2
             if event.key==pygame.K_UP:
-                jogador.speedy-=Vy
+                jogador.speedy-=Vy*2
             if event.key==pygame.K_DOWN:
-                jogador.speedy+=Vy
+                jogador.speedy+=Vy*2
             if event.key==pygame.K_SPACE:
                 jogador.atirar()
 
 #Parar Movimento
         if event.type==pygame.KEYUP:
             if event.key==pygame.K_LEFT:
-                jogador.speedx+=Vx
+                jogador.speedx+=Vx*2
             if event.key==pygame.K_RIGHT:
-                jogador.speedx-=Vx
+                jogador.speedx-=Vx*2
             if event.key==pygame.K_UP:
-                jogador.speedy+=Vy
+                jogador.speedy+=Vy*2
             if event.key==pygame.K_DOWN:
-                jogador.speedy-=Vy
+                jogador.speedy-=Vy*2
+#Movimento do Inimigo Voador:
+        movinivoa=random.randint(0,50)
+        print(movinivoa)
+        if movinivoa in range(0,10):
+            InimigoVoador.rect.x-=Vx
+        if movinivoa in range(10,20):
+            InimigoVoador.rect.y-=Vy
+        if movinivoa in range(20,30):
+            InimigoVoador.rect.x+=Vx
+        if movinivoa in range(30,40):
+            InimigoVoador.rect.y+=Vy
+        if movinivoa in range (40,50):
+            InimigoVoador.atirar()
+
 
     Sprites.update()
 
