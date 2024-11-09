@@ -47,7 +47,6 @@ Sprites.add(jogador)
 InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas,Balaimg)
 Sprites.add(InimigoVoador)
 
-FPS=30
 movimento=0
 
 while game:
@@ -59,39 +58,38 @@ while game:
 #Começar Movimento
         if event.type==pygame.KEYDOWN:
             if event.key==pygame.K_LEFT:
-                jogador.speedx-=Vx*2
+                jogador.speedx-=Vx
             if event.key==pygame.K_RIGHT:
-                jogador.speedx+=Vx*2
+                jogador.speedx+=Vx
             if event.key==pygame.K_UP:
-                jogador.speedy-=Vy*2
+                jogador.speedy-=Vy
             if event.key==pygame.K_DOWN:
-                jogador.speedy+=Vy*2
+                jogador.speedy+=Vy
             if event.key==pygame.K_SPACE:
                 jogador.atirar()
 
 #Parar Movimento
         if event.type==pygame.KEYUP:
             if event.key==pygame.K_LEFT:
-                jogador.speedx+=Vx*2
+                jogador.speedx+=Vx
             if event.key==pygame.K_RIGHT:
-                jogador.speedx-=Vx*2
+                jogador.speedx-=Vx
             if event.key==pygame.K_UP:
-                jogador.speedy+=Vy*2
+                jogador.speedy+=Vy
             if event.key==pygame.K_DOWN:
-                jogador.speedy-=Vy*2
+                jogador.speedy-=Vy
 #Movimento do Inimigo Voador:
-        movinivoa=random.randint(0,50)
-        print(movinivoa)
-        if movinivoa in range(0,10):
-            InimigoVoador.rect.x-=Vx
-        if movinivoa in range(10,20):
-            InimigoVoador.rect.y-=Vy
-        if movinivoa in range(20,30):
-            InimigoVoador.rect.x+=Vx
-        if movinivoa in range(30,40):
-            InimigoVoador.rect.y+=Vy
-        if movinivoa in range (40,50):
-            InimigoVoador.atirar()
+    movinivoa=random.randint(0,5)
+    if movinivoa==0:
+        InimigoVoador.rect.x-=Vx*10
+    if movinivoa==1:
+        InimigoVoador.rect.y-=Vy*5
+    if movinivoa==2:
+        InimigoVoador.rect.x+=Vx*10
+    if movinivoa==3:
+        InimigoVoador.rect.y+=Vy*5
+    if movinivoa==4:
+        InimigoVoador.atirar()
 
 
     Sprites.update()

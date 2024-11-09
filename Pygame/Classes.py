@@ -31,15 +31,7 @@ class navezinha(pygame.sprite.Sprite):
     def update(self):
         self.rect.x+=self.speedx#Movimento no Eixo X
         self.rect.y+=self.speedy#Movimento no Eixo Y
-
-        #Carrega a ação de atirar
-    def atirar(self):
-        # A nova bala vai ser criada logo acima e no centro horizontal da nave
-        atiro = Tiro(self.Balaimg, self.rect.x, self.rect.y)
-        self.Balas.add(atiro)
-        self.Sprites.add(atiro)
-
-#Limites
+        #Limites
         if self.rect.left<0:
             self.rect.left=0
         if self.rect.right>Largura:
@@ -48,6 +40,15 @@ class navezinha(pygame.sprite.Sprite):
             self.rect.top=0
         if self.rect.bottom>Altura:
             self.rect.bottom=Altura
+            
+        #Carrega a ação de atirar
+    def atirar(self):
+        # A nova bala vai ser criada logo acima e no centro horizontal da nave
+        atiro = Tiro(self.Balaimg, self.rect.x, self.rect.y)
+        self.Balas.add(atiro)
+        self.Sprites.add(atiro)
+
+
 
 #Classe parar os tiros
 class Tiro(pygame.sprite.Sprite):
@@ -97,6 +98,7 @@ class InimigoVoa(pygame.sprite.Sprite):
         #     self.rect.x+=self.speedx
         
         #Limites do inimigo Voador
+        
         if self.rect.left<Largura/2:
             self.rect.left=Largura/2
         if self.rect.right>Largura:
