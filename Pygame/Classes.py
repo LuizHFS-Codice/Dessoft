@@ -4,11 +4,11 @@ import random
 from Config import *
 
 class navezinha(pygame.sprite.Sprite):
-    def __init__(self,NaveImg,Sprites,Balas,Balaimg):
+    def __init__(self,NaveImg,sprites,Balas,Balaimg):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = NaveImg
-        self.Sprites = Sprites
+        self.sprites = sprites
         self.Balas = Balas
 
         #coordenada inicial
@@ -46,7 +46,7 @@ class navezinha(pygame.sprite.Sprite):
         # A nova bala vai ser criada logo acima e no centro horizontal da nave
         atiro = Tiro(self.Balaimg, self.rect.x, self.rect.y)
         self.Balas.add(atiro)
-        self.Sprites.add(atiro)
+        self.sprites.add(atiro)
 
 
 

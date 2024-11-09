@@ -38,6 +38,7 @@ fundo=ceil(Largura/SkyBox.get_width()) +1
 #grupo de sprites
 Sprites=pygame.sprite.Group()
 Balas=pygame.sprite.Group()
+Balas_Voadores=pygame.sprite.Group()
 Inimigos_Voadores=pygame.sprite.Group()
 
 #Jogador
@@ -46,11 +47,13 @@ Sprites.add(jogador)
 
 #Inimigo Voador
 for i in range(3):
-    InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas,Balaimg)
+    InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas_Voadores,Balaimg)
+    Sprites.add(InimigoVoador)
     Inimigos_Voadores.add(InimigoVoador)
 Sprites.add(Inimigos_Voadores)
 
 movimento=0
+Inv=0 #Invulnerabilidade
 
 while game:
     relógio.tick(FPS)
@@ -83,20 +86,28 @@ while game:
                 jogador.speedy-=Vy
 #Movimento do Inimigo Voador:
     for cada_um in Inimigos_Voadores:
-        movinivoa=random.randint(0,5)
-        if movinivoa==0:
+        movinivoa=random.randint(0,30)
+        if movinivoa in range(0,10):
             cada_um.rect.x-=Vx*10
-        if movinivoa==1:
+        if movinivoa in range(5,15):
             cada_um.rect.y-=Vy*5
-        if movinivoa==2:
+        if movinivoa in range(10,20):
             cada_um.rect.x+=Vx*10
-        if movinivoa==3:
+        if movinivoa in range(15,25):
             cada_um.rect.y+=Vy*5
-        if movinivoa==4:
+        if movinivoa in range(25,30):
             cada_um.atirar()
-
     #Danos
-    # if 
+    Dano=[]
+    if Inv==0:
+        Dano=pygame.sprite.spritecollide(jogador,Balas_Voadores,1)
+        if len(Dano)>0:
+            Inv=FPS*T_Inv
+    else:
+        Inv-=1
+    Dano=[]
+    Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Balas,0,1)
+
 
     Sprites.update()
 
