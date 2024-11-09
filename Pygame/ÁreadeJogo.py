@@ -38,14 +38,17 @@ fundo=ceil(Largura/SkyBox.get_width()) +1
 #grupo de sprites
 Sprites=pygame.sprite.Group()
 Balas=pygame.sprite.Group()
+Inimigos_Voadores=pygame.sprite.Group()
 
 #Jogador
 jogador = navezinha(NaveImg,Sprites,Balas,Balaimg)
 Sprites.add(jogador)
 
 #Inimigo Voador
-InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas,Balaimg)
-Sprites.add(InimigoVoador)
+for i in range(3):
+    InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas,Balaimg)
+    Inimigos_Voadores.add(InimigoVoador)
+Sprites.add(Inimigos_Voadores)
 
 movimento=0
 
@@ -79,18 +82,21 @@ while game:
             if event.key==pygame.K_DOWN:
                 jogador.speedy-=Vy
 #Movimento do Inimigo Voador:
-    movinivoa=random.randint(0,5)
-    if movinivoa==0:
-        InimigoVoador.rect.x-=Vx*10
-    if movinivoa==1:
-        InimigoVoador.rect.y-=Vy*5
-    if movinivoa==2:
-        InimigoVoador.rect.x+=Vx*10
-    if movinivoa==3:
-        InimigoVoador.rect.y+=Vy*5
-    if movinivoa==4:
-        InimigoVoador.atirar()
+    for cada_um in Inimigos_Voadores:
+        movinivoa=random.randint(0,5)
+        if movinivoa==0:
+            cada_um.rect.x-=Vx*10
+        if movinivoa==1:
+            cada_um.rect.y-=Vy*5
+        if movinivoa==2:
+            cada_um.rect.x+=Vx*10
+        if movinivoa==3:
+            cada_um.rect.y+=Vy*5
+        if movinivoa==4:
+            cada_um.atirar()
 
+    #Danos
+    # if 
 
     Sprites.update()
 

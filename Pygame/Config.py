@@ -26,3 +26,9 @@ FPS=30
 #Velocidade nave
 Vx=15
 Vy=9
+
+#Variaveis de dano
+Vida_Jogador=10
+Vida_Inimigo_Voa=2
+Dano_Jogador=1
+Dano_inimigo_Voa=2
