@@ -149,12 +149,12 @@ class TiroInimigo(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
 
-Input=int(input('Escolha um número para ver a documentação de cada classe, 1=Nave, 2=Tiro, 3=Inimigo Voador, 4=Tiro Inimigo> '))
-if Input==1:
-    help(navezinha)
-if Input==2:
-    help(Tiro)
-if Input==3:
-    help(InimigoVoa)
-if Input==4:
-    help(TiroInimigo)
+# Input=int(input('Escolha um número para ver a documentação de cada classe, 1=Nave, 2=Tiro, 3=Inimigo Voador, 4=Tiro Inimigo> '))
+# if Input==1:
+#     help(navezinha)
+# if Input==2:
+#     help(Tiro)
+# if Input==3:
+#     help(InimigoVoa)
+# if Input==4:
+#     help(TiroInimigo)

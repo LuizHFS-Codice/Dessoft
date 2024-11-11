@@ -88,13 +88,13 @@ while game:
     for cada_um in Inimigos_Voadores:
         movinivoa=random.randint(0,30)
         if movinivoa in range(0,10):
-            cada_um.rect.x-=Vx*10
+            cada_um.rect.x-=Vx*5
         if movinivoa in range(5,15):
             cada_um.rect.y-=Vy*5
         if movinivoa in range(10,20):
-            cada_um.rect.x+=Vx*10
+            cada_um.rect.x+=Vx*2.5
         if movinivoa in range(15,25):
-            cada_um.rect.y+=Vy*5
+            cada_um.rect.y+=Vy*2.5
         if movinivoa in range(25,30):
             cada_um.atirar()
     #Danos
