@@ -4,7 +4,10 @@ import random
 from Config import *
 
 class navezinha(pygame.sprite.Sprite):
+    '''As principais funções da classe nave estão armazenadas aqui.'''
     def __init__(self,NaveImg,sprites,Balas,Balaimg):
+        '''Função __init__: Onde suas condições iniciais estão armazenadas.
+        Como onde ela nasce, o seu retângulo e onde é carregado as balas.'''
         pygame.sprite.Sprite.__init__(self)
 
         self.image = NaveImg
@@ -29,6 +32,8 @@ class navezinha(pygame.sprite.Sprite):
 
     #Atualiza as coordenadas
     def update(self):
+        '''Função update: Onde seus limites são delimitados e o movimento da nave
+        é realizado.'''
         self.rect.x+=self.speedx#Movimento no Eixo X
         self.rect.y+=self.speedy#Movimento no Eixo Y
         #Limites
@@ -43,6 +48,7 @@ class navezinha(pygame.sprite.Sprite):
             
         #Carrega a ação de atirar
     def atirar(self):
+        '''Função Atirar: Permite o ataque, utilizando a classe "Tiro".'''
         # A nova bala vai ser criada logo acima e no centro horizontal da nave
         atiro = Tiro(self.Balaimg, self.rect.x, self.rect.y)
         self.Balas.add(atiro)
@@ -52,14 +58,17 @@ class navezinha(pygame.sprite.Sprite):
 
 #Classe parar os tiros
 class Tiro(pygame.sprite.Sprite):
+    '''Classe "Tiro" que será utilizada pela nave.'''
     def __init__(self, img, x, y):
+        '''Função __init__: Estabelecimento de onde a bala nascerá,
+        E a velocidade horizontal inicial.'''
         pygame.sprite.Sprite.__init__(self)
 
         self.image = img
         self.rect = self.image.get_rect()
 
-        self.rect.x = x+125
-        self.rect.y = y+22.5
+        self.rect.x = x+LargNav
+        self.rect.y = y+(AltNav/2)
 
         #cordenadas do tiro
 
@@ -67,6 +76,8 @@ class Tiro(pygame.sprite.Sprite):
         self.speedx = 25
 
     def update(self):
+        '''Função Update: A velocidade continua constante por cada atualização.
+        Se a Bala passar da largura, ela será apagada automaticamente.'''
         #atualiza a bala no eixo x
         self.rect.x += self.speedx
 
@@ -138,3 +149,12 @@ class TiroInimigo(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
 
+Input=int(input('Escolha um número para ver a documentação de cada classe, 1=Nave, 2=Tiro, 3=Inimigo Voador, 4=Tiro Inimigo> '))
+if Input==1:
+    help(navezinha)
+if Input==2:
+    help(Tiro)
+if Input==3:
+    help(InimigoVoa)
+if Input==4:
+    help(TiroInimigo)
