@@ -31,6 +31,14 @@ Balaimg=pygame.transform.scale(Balaimg,(LargBala,AltBala))
 IniVoaImg=pygame.image.load('Assets/Imagens/InimigoVoa.png').convert_alpha()
 IniVoaImg=pygame.transform.scale(IniVoaImg,(LargNav,AltNav))
 
+#Imagem do Inimigo Trimpot
+TrimpotImg=pygame.image.load('Assets/Imagens/Trimpot.png').convert_alpha()
+TrimpotImg=pygame.transform.scale(TrimpotImg,(LargNav/3,AltNav*2))
+
+#Imagem do Missil do Trimpot
+MisselImg=pygame.image.load('Assets/Imagens/Missil.png')
+MisselImg=pygame.transform.scale(MisselImg,(LargMissil,AltMissil))
+
 #tela rolando para esquerda
 rolagem=0
 fundo=ceil(Largura/SkyBox.get_width()) +1
@@ -40,6 +48,8 @@ Sprites=pygame.sprite.Group()
 Balas=pygame.sprite.Group()
 Balas_Voadores=pygame.sprite.Group()
 Inimigos_Voadores=pygame.sprite.Group()
+Trimpots=pygame.sprite.Group()
+Missils=pygame.sprite.Group()
 
 #Jogador
 jogador = navezinha(NaveImg,Sprites,Balas,Balaimg)
@@ -50,7 +60,11 @@ for i in range(3):
     InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas_Voadores,Balaimg)
     Sprites.add(InimigoVoador)
     Inimigos_Voadores.add(InimigoVoador)
+    Trimpot=InimigoBaixo(TrimpotImg,Sprites,Missils,MisselImg)
+    Sprites.add(Trimpot)
+    Trimpots.add(Trimpot)
 Sprites.add(Inimigos_Voadores)
+Sprites.add(Trimpots)
 
 movimento=0
 Inv=0 #Invulnerabilidade
@@ -87,15 +101,19 @@ while game:
 #Movimento do Inimigo Voador:
     for cada_um in Inimigos_Voadores:
         movinivoa=random.randint(0,30)
-        if movinivoa in range(0,10):
-            cada_um.rect.x-=Vx*5
-        if movinivoa in range(5,15):
-            cada_um.rect.y-=Vy*5
-        if movinivoa in range(10,20):
-            cada_um.rect.x+=Vx*2.5
-        if movinivoa in range(15,25):
-            cada_um.rect.y+=Vy*2.5
-        if movinivoa in range(25,30):
+        if movinivoa in range(0,5):
+            cada_um.speedx-=Vx
+            cada_um.speedx+=Vx/4
+        if movinivoa in range(5,10):
+            cada_um.speedy-=Vy
+            cada_um.speedy+=Vy/4
+        if movinivoa in range(10,15):
+            cada_um.speedx+=Vx
+            cada_um.speedx-=Vx/4
+        if movinivoa in range(15,20):
+            cada_um.speedy+=Vy
+            cada_um.speedy-=Vy/4
+        if movinivoa in range(29,31):
             cada_um.atirar()
     #Danos
     Dano=[]
@@ -122,6 +140,7 @@ while game:
     if abs(rolagem)>SkyBox.get_width():
         rolagem=0
     
+
     Sprites.draw(Janela)
 
     pygame.display.update()

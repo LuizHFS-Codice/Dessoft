@@ -87,7 +87,11 @@ class Tiro(pygame.sprite.Sprite):
 
 #Classe do Inimigo Voador
 class InimigoVoa(pygame.sprite.Sprite):
+    '''Classe "Inimigo Voador", um dos oponentes.'''
     def __init__(self,img,Sprites,Balas,Balaimg):
+        '''Função __init__: Determina onde o inimigo nascerá
+        O inimigo necessariamente nascerá do lado direito da tela
+        A função também carrega as balas do inimigo.'''
         pygame.sprite.Sprite.__init__(self)
         self.image = img
         self.Sprites = Sprites
@@ -98,16 +102,24 @@ class InimigoVoa(pygame.sprite.Sprite):
         self.rect.x=Largura
         self.rect.y=random.randint(0,Altura-100) #Posição Aleatória de Spawn na Altura
         #Carregando balas
+        self.speedx=0
+        self.speedy=0
         self.Balas = Balas
         self.Balaimg = Balaimg
+        
 
     def update(self):
+        '''Função Update: limita o espaço que a nave inimiga voadora percorre
+        Junto com a velocidade que ele percorrerá.'''
         # while self.rect.x>Largura:
         #     self.speedx-=Vx/10
         #     self.rect.x+=self.speedx
         #     self.speedx+=Vx/10
         #     self.rect.x+=self.speedx
-        
+
+        #Velocidade do inimigo
+        self.rect.x+=self.speedx
+        self.rect.y+=self.speedy
         #Limites do inimigo Voador
         
         if self.rect.left<Largura/2:
@@ -118,6 +130,7 @@ class InimigoVoa(pygame.sprite.Sprite):
             self.rect.top=0
         if self.rect.bottom>Altura-100:
             self.rect.bottom=Altura-100
+        
 
     def atirar(self):
         # A nova bala vai ser criada logo acima e no centro horizontal da nave
@@ -149,6 +162,60 @@ class TiroInimigo(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
 
+class InimigoBaixo(pygame.sprite.Sprite):
+    def __init__(self,img,Sprites,missel,misselimg):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = img
+        self.Sprites = Sprites
+        self.missel = missel
+        self.img=pygame.transform.scale(self.image,(LargNav/3,AltNav))
+        #Spawns
+        self.rect=self.image.get_rect()
+        self.rect.x=random.randint(0,Largura)
+        self.rect.y=Altura-100 #Posição Aleatória de Spawn na Altura
+        #Carregando balas
+        self.speedx=0
+        self.missel = missel
+        self.misselimg = misselimg
+        
+    def update(self):
+        #Movimento lateral do Trimpot
+        self.rect.x+=self.speedx
+        #Limites Laterais
+        if self.rect.x<0:
+            self.rect.x=0
+        if self.rect.x>Largura:
+            self.rect.x=Largura
+    
+    def atirar(self):
+        # O novo Missil vai ser criado logo acima e no centro vertical do Trimpot
+        atiro = MissilInimigoBaixo(self.misselimg, self.rect.x, self.rect.y)
+        self.Missil.add(atiro)
+        self.Sprites.add(atiro)
+
+class MissilInimigoBaixo(pygame.sprite.Sprite):
+        def __init__(self, img, x, y):
+            pygame.sprite.Sprite.__init__(self)
+
+            self.image = img
+            self.rect = self.image.get_rect()
+
+            self.rect.x = x
+            self.rect.y = y+AltNav/2
+
+            #cordenadas do Missil
+
+            #velocidade do tiro na vertical
+            self.speedy = 10
+
+        def update(self):
+            #atualiza a bala no eixo x
+            self.rect.y -= self.speedy
+
+            #se for maior que a largura da tela, apaga o tiro
+            if self.rect.bottom < 0:
+                self.kill()
+        
 # Input=int(input('Escolha um número para ver a documentação de cada classe, 1=Nave, 2=Tiro, 3=Inimigo Voador, 4=Tiro Inimigo> '))
 # if Input==1:
 #     help(navezinha)
