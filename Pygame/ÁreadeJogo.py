@@ -102,23 +102,32 @@ while game:
     for cada_um in Inimigos_Voadores:
         movinivoa=random.randint(0,30)
         if movinivoa in range(0,5):
-            cada_um.speedx-=Vx
-            cada_um.speedx+=Vx/4
+            cada_um.speedx-=Vx/5
         if movinivoa in range(5,10):
-            cada_um.speedy-=Vy
-            cada_um.speedy+=Vy/4
+            cada_um.speedy-=Vy/2.5
         if movinivoa in range(10,15):
-            cada_um.speedx+=Vx
-            cada_um.speedx-=Vx/4
+            cada_um.speedx+=Vx/5
         if movinivoa in range(15,20):
-            cada_um.speedy+=Vy
-            cada_um.speedy-=Vy/4
+            cada_um.speedy+=Vy/2.5
         if movinivoa in range(29,31):
             cada_um.atirar()
+    #Movimento do Trimpod
+    for cada in Trimpots:
+        moviTrimpot=random.randint(0,30)
+        if moviTrimpot in range(0,5):
+            cada.speedx-=Vx/10
+        if moviTrimpot in range(10,15):
+            cada.speedx+=Vx/10
+        if moviTrimpot in range(24,25):
+            cada.atirar()
+    
     #Danos
     Dano=[]
     if Inv==0:
         Dano=pygame.sprite.spritecollide(jogador,Balas_Voadores,1)
+        if len(Dano)>0:
+            Inv=FPS*T_Inv
+        Dano=pygame.sprite.spritecollide(jogador,Missils,1)
         if len(Dano)>0:
             Inv=FPS*T_Inv
     else:

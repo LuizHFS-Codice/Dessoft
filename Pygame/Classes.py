@@ -182,15 +182,15 @@ class InimigoBaixo(pygame.sprite.Sprite):
         #Movimento lateral do Trimpot
         self.rect.x+=self.speedx
         #Limites Laterais
-        if self.rect.x<0:
-            self.rect.x=0
-        if self.rect.x>Largura:
-            self.rect.x=Largura
+        if self.rect.left<0:
+            self.rect.left=0
+        if self.rect.right>Largura:
+            self.rect.right=Largura
     
     def atirar(self):
         # O novo Missil vai ser criado logo acima e no centro vertical do Trimpot
         atiro = MissilInimigoBaixo(self.misselimg, self.rect.x, self.rect.y)
-        self.Missil.add(atiro)
+        self.missel.add(atiro)
         self.Sprites.add(atiro)
 
 class MissilInimigoBaixo(pygame.sprite.Sprite):
