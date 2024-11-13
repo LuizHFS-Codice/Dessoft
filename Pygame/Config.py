@@ -14,7 +14,6 @@ AltNavm=83/1.3
 LargNavt=50/1.1
 AltNavt=100/1.1
 
-
 LargBala=20
 AltBala=10
 
@@ -43,3 +42,4 @@ Vida_Inimigo_Voa=2
 Dano_Tiro_Jogador=1
 Dano_Bomba_Jogador=2
 Dano_inimigo_Voa=2
+Dano_Missil_Inimigo=2
