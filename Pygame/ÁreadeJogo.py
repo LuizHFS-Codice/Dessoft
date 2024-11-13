@@ -151,7 +151,7 @@ while game:
         Inv-=1
     Dano=[]
     Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Balas,0,1)
-    vida_tela=font.render(f'{jogador.vida}', True, (255, 255, 255))
+    vida_tela=font.render(f'{jogador.vida}', False, (255, 255, 255))
 
     Sprites.update()
 
@@ -165,7 +165,7 @@ while game:
     rolagem-=2
     if abs(rolagem)>SkyBox.get_width():
         rolagem=0
-    Janela.blit(vida_tela(0,0))
+    Janela.blit(vida_tela,(0,0))
 
     Sprites.draw(Janela)
 
