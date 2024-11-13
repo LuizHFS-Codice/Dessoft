@@ -28,7 +28,7 @@ Balaimg=pygame.image.load('Assets/Imagens/Bala.png').convert_alpha()
 Balaimg=pygame.transform.scale(Balaimg,(LargBala,AltBala))
 
 #Imagem da bomba
-Bombasimg=pygame.image.load('Assets/Imagens/Bomba.png')
+Bombasimg=pygame.image.load('Assets/Imagens/Bomba.png').convert_alpha()
 Bombasimg=pygame.transform.scale(Bombasimg,(Bomb,Bomb))
 
 #Imagem do Inimigo Voador
@@ -40,7 +40,7 @@ TrimpotImg=pygame.image.load('Assets/Imagens/Trimpot.png').convert_alpha()
 TrimpotImg=pygame.transform.scale(TrimpotImg,(LargNavt,AltNavt))
 
 #Imagem do Missil do Trimpot
-MisselImg=pygame.image.load('Assets/Imagens/Missil.png')
+MisselImg=pygame.image.load('Assets/Imagens/Missil.png').convert_alpha()
 MisselImg=pygame.transform.scale(MisselImg,(LargMissil,AltMissil))
 
 #tela rolando para esquerda
@@ -106,6 +106,7 @@ while game:
                 jogador.speedy+=Vy
             if event.key==pygame.K_DOWN:
                 jogador.speedy-=Vy
+
 #Movimento do Inimigo Voador:
     if Ação==0:
         for cada_um in Inimigos_Voadores:
@@ -120,6 +121,7 @@ while game:
                 cada_um.speedy+=Vy
             if movinivoa%2!=0:
                 cada_um.atirar()
+
         #Movimento do Trimpod
         for cada in Trimpots:
             moviTrimpot=random.randint(0,30)
@@ -129,7 +131,7 @@ while game:
                 cada.speedx+=Vx/2
             if moviTrimpot%2==0:
                 cada.atirar()
-        Ação=FPS
+        Ação=FPS//4
     Ação-=1
 
     #Danos
