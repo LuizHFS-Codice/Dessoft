@@ -38,8 +38,9 @@ Vy=9
 #Variaveis de dano
 Vida_Jogador=50
 T_Inv=5#Tempo de Invulnerabilidade em segundos
-Vida_Inimigo_Voa=2
+Vida_Inimigo_Voa=10
+Vida_Tripod=15
 Dano_Tiro_Jogador=1
 Dano_Bomba_Jogador=2
-Dano_inimigo_Voa=2
-Dano_Missil_Inimigo=2
+Dano_inimigo_Voa=2.5
+Dano_Missil_Inimigo=5

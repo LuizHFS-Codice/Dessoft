@@ -139,6 +139,7 @@ class InimigoVoa(pygame.sprite.Sprite):
         self.Sprites = Sprites
         self.Balas = Balas
         self.img=pygame.transform.scale(self.image,(LargNav,AltNav))
+        self.vida=Vida_Inimigo_Voa
         #Spawns
         self.rect=self.image.get_rect()
         self.rect.x=Largura
@@ -211,6 +212,7 @@ class InimigoBaixo(pygame.sprite.Sprite):
         self.Sprites = Sprites
         self.missel = missel
         self.img=pygame.transform.scale(self.image,(LargNav/3,AltNav))
+        self.vida=Vida_Tripod
         #Spawns
         self.rect=self.image.get_rect()
         self.rect.x=random.randint(0,Largura)

@@ -151,6 +151,17 @@ while game:
         Inv-=1
     Dano=[]
     Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Balas,0,1)
+    for Inimigos in Dano:
+        Inimigos.vida-=Dano_Tiro_Jogador
+        if Inimigos.vida<=0:
+            Inimigos.kill()
+    Dano=[]
+    Dano=pygame.sprite.groupcollide(Trimpots,Bombas,0,1)
+    for Trimpod in Dano:
+        Trimpod.vida-=Dano_Tiro_Jogador
+        if Trimpod.vida<=0:
+            Trimpod.kill()
+        
     vida_tela=font.render(f'{jogador.vida}', False, (255, 255, 255))
 
     Sprites.update()
