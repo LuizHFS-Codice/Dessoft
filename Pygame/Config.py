@@ -16,6 +16,7 @@ AltBala=10
 LargMissil=10
 AltMissil=20
 
+Bomb=20
 
 #           Configurações Jogo
 
@@ -34,5 +35,6 @@ Vy=9
 Vida_Jogador=10
 T_Inv=5#Tempo de Invulnerabilidade em segundos
 Vida_Inimigo_Voa=2
-Dano_Jogador=1
+Dano_Tiro_Jogador=1
+Dano_Bomba_Jogador=2
 Dano_inimigo_Voa=2

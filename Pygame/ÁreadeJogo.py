@@ -27,6 +27,10 @@ SkyBox = pygame.transform.scale(SkyBox,(Largura,Altura))
 Balaimg=pygame.image.load('Assets/Imagens/Bala.png').convert_alpha()
 Balaimg=pygame.transform.scale(Balaimg,(LargBala,AltBala))
 
+#Imagem da bomba
+Bombasimg=pygame.image.load('Assets/Imagens/Bomba.png')
+Bombasimg=pygame.transform.scale(Bombasimg,(Bomb,Bomb))
+
 #Imagem do Inimigo Voador
 IniVoaImg=pygame.image.load('Assets/Imagens/InimigoVoa.png').convert_alpha()
 IniVoaImg=pygame.transform.scale(IniVoaImg,(LargNav,AltNav))
@@ -50,9 +54,10 @@ Balas_Voadores=pygame.sprite.Group()
 Inimigos_Voadores=pygame.sprite.Group()
 Trimpots=pygame.sprite.Group()
 Missils=pygame.sprite.Group()
+Bombas=pygame.sprite.Group()
 
 #Jogador
-jogador = navezinha(NaveImg,Sprites,Balas,Balaimg)
+jogador = navezinha(NaveImg,Sprites,Balas,Balaimg,Bombas,Bombasimg)
 Sprites.add(jogador)
 
 #Inimigo Voador
@@ -68,6 +73,7 @@ Sprites.add(Trimpots)
 
 movimento=0
 Inv=0 #Invulnerabilidade
+Ação=FPS//4
 
 while game:
     relógio.tick(FPS)
@@ -85,8 +91,10 @@ while game:
                 jogador.speedy-=Vy
             if event.key==pygame.K_DOWN:
                 jogador.speedy+=Vy
-            if event.key==pygame.K_SPACE:
+            if event.key==pygame.K_z:
                 jogador.atirar()
+            if event.key==pygame.K_x:
+                jogador.bomba()
 
 #Parar Movimento
         if event.type==pygame.KEYUP:
@@ -99,28 +107,31 @@ while game:
             if event.key==pygame.K_DOWN:
                 jogador.speedy-=Vy
 #Movimento do Inimigo Voador:
-    for cada_um in Inimigos_Voadores:
-        movinivoa=random.randint(0,30)
-        if movinivoa in range(0,5):
-            cada_um.speedx-=Vx/5
-        if movinivoa in range(5,10):
-            cada_um.speedy-=Vy/2.5
-        if movinivoa in range(10,15):
-            cada_um.speedx+=Vx/5
-        if movinivoa in range(15,20):
-            cada_um.speedy+=Vy/2.5
-        if movinivoa in range(29,31):
-            cada_um.atirar()
-    #Movimento do Trimpod
-    for cada in Trimpots:
-        moviTrimpot=random.randint(0,30)
-        if moviTrimpot in range(0,5):
-            cada.speedx-=Vx/10
-        if moviTrimpot in range(10,15):
-            cada.speedx+=Vx/10
-        if moviTrimpot in range(24,25):
-            cada.atirar()
-    
+    if Ação==0:
+        for cada_um in Inimigos_Voadores:
+            movinivoa=random.randint(0,30)
+            if movinivoa in range(0,5):
+                cada_um.speedx-=Vx 
+            if movinivoa in range(5,10):
+                cada_um.speedy-=Vy
+            if movinivoa in range(10,15):
+                cada_um.speedx+=Vx
+            if movinivoa in range(15,20):
+                cada_um.speedy+=Vy
+            if movinivoa%2!=0:
+                cada_um.atirar()
+        #Movimento do Trimpod
+        for cada in Trimpots:
+            moviTrimpot=random.randint(0,30)
+            if moviTrimpot in range(0,5):
+                cada.speedx-=Vx/2
+            if moviTrimpot in range(10,15):
+                cada.speedx+=Vx/2
+            if moviTrimpot%2==0:
+                cada.atirar()
+        Ação=FPS
+    Ação-=1
+
     #Danos
     Dano=[]
     if Inv==0:

@@ -1,11 +1,13 @@
 
 import pygame
 import random
+import math
 from Config import *
+
 
 class navezinha(pygame.sprite.Sprite):
     '''As principais funções da classe nave estão armazenadas aqui.'''
-    def __init__(self,NaveImg,sprites,Balas,Balaimg):
+    def __init__(self,NaveImg,sprites,Balas,Balaimg,Bombas,Bombasimg):
         '''Função __init__: Onde suas condições iniciais estão armazenadas.
         Como onde ela nasce, o seu retângulo e onde é carregado as balas.'''
         pygame.sprite.Sprite.__init__(self)
@@ -13,6 +15,7 @@ class navezinha(pygame.sprite.Sprite):
         self.image = NaveImg
         self.sprites = sprites
         self.Balas = Balas
+        self.Bombas=Bombas
 
         #coordenada inicial
         self.rect=self.image.get_rect()
@@ -29,6 +32,10 @@ class navezinha(pygame.sprite.Sprite):
         #Carregando balas
         self.Balas = Balas
         self.Balaimg = Balaimg
+
+        #Carregando Bombas
+        self.Bombas=Bombas
+        self.Bombasimg=Bombasimg
 
     #Atualiza as coordenadas
     def update(self):
@@ -54,9 +61,15 @@ class navezinha(pygame.sprite.Sprite):
         self.Balas.add(atiro)
         self.sprites.add(atiro)
 
+        #Carrega o bombardeio
+    def bomba(self):
+        boom=Bombardeio(self.Bombasimg, self.rect.x,self.rect.y)
+        self.Bombas.add(boom)
+        self.sprites.add(boom)
 
 
-#Classe parar os tiros
+
+#Classe para os tiros
 class Tiro(pygame.sprite.Sprite):
     '''Classe "Tiro" que será utilizada pela nave.'''
     def __init__(self, img, x, y):
@@ -84,6 +97,32 @@ class Tiro(pygame.sprite.Sprite):
         #se for maior que a largura da tela, apaga o tiro
         if self.rect.bottom > Largura:
             self.kill()
+
+
+
+# Classe da Bomba
+class Bombardeio(pygame.sprite.Sprite):
+        def __init__(self, img, x, y):
+            pygame.sprite.Sprite.__init__(self)
+
+            self.image=img
+            self.rect=self.image.get_rect()
+
+            self.rect.x=x+LargNav/2
+            self.rect.y=y+AltNav
+
+            #cordenadas do Missil
+
+            #velocidade do tiro na vertical
+            self.speedy=10
+
+        def update(self):
+            #atualiza a bala no eixo x
+            self.rect.y+=self.speedy
+
+            #se for maior que a largura da tela, apaga o tiro
+            if self.rect.bottom==Altura:
+                self.kill()
 
 #Classe do Inimigo Voador
 class InimigoVoa(pygame.sprite.Sprite):
@@ -118,8 +157,8 @@ class InimigoVoa(pygame.sprite.Sprite):
         #     self.rect.x+=self.speedx
 
         #Velocidade do inimigo
-        self.rect.x+=self.speedx
-        self.rect.y+=self.speedy
+        self.rect.x+=(math.sin(self.speedx)+math.cos(self.speedx))*2
+        self.rect.y+=(math.sin(self.speedy)+math.cos(self.speedy))*2
         #Limites do inimigo Voador
         
         if self.rect.left<Largura/2:
@@ -180,12 +219,12 @@ class InimigoBaixo(pygame.sprite.Sprite):
         
     def update(self):
         #Movimento lateral do Trimpot
-        self.rect.x+=self.speedx
+        self.rect.x+=math.tan(self.speedx)*5
         #Limites Laterais
         if self.rect.left<0:
             self.rect.left=0
-        if self.rect.right>Largura:
-            self.rect.right=Largura
+        if self.rect.right>Largura/1.5:
+            self.rect.right=Largura/1.5
     
     def atirar(self):
         # O novo Missil vai ser criado logo acima e no centro vertical do Trimpot
@@ -200,7 +239,7 @@ class MissilInimigoBaixo(pygame.sprite.Sprite):
             self.image = img
             self.rect = self.image.get_rect()
 
-            self.rect.x = x
+            self.rect.x = x+(LargNav/3)/2
             self.rect.y = y+AltNav/2
 
             #cordenadas do Missil
@@ -215,7 +254,6 @@ class MissilInimigoBaixo(pygame.sprite.Sprite):
             #se for maior que a largura da tela, apaga o tiro
             if self.rect.bottom < 0:
                 self.kill()
-        
 # Input=int(input('Escolha um número para ver a documentação de cada classe, 1=Nave, 2=Tiro, 3=Inimigo Voador, 4=Tiro Inimigo> '))
 # if Input==1:
 #     help(navezinha)
