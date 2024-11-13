@@ -36,7 +36,7 @@ Vx=15
 Vy=9
 
 #Variaveis de dano
-Vida_Jogador=10
+Vida_Jogador=50
 T_Inv=5#Tempo de Invulnerabilidade em segundos
 Vida_Inimigo_Voa=2
 Dano_Tiro_Jogador=1
