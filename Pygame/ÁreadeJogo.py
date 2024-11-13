@@ -47,6 +47,8 @@ MisselImg=pygame.transform.scale(MisselImg,(LargMissil,AltMissil))
 rolagem=0
 fundo=ceil(Largura/SkyBox.get_width()) +1
 
+#Fonte
+font = pygame.font.SysFont(None, 48)
 #grupo de sprites
 Sprites=pygame.sprite.Group()
 Balas=pygame.sprite.Group()
@@ -139,15 +141,17 @@ while game:
     if Inv==0:
         Dano=pygame.sprite.spritecollide(jogador,Balas_Voadores,1)
         if len(Dano)>0:
+            jogador.vida-=Dano_inimigo_Voa
             Inv=FPS*T_Inv
         Dano=pygame.sprite.spritecollide(jogador,Missils,1)
         if len(Dano)>0:
+            jogador.vida-=Dano_Missil_Inimigo
             Inv=FPS*T_Inv
     else:
         Inv-=1
     Dano=[]
     Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Balas,0,1)
-
+    vida_tela=font.render(f'{jogador.vida}', True, (255, 255, 255))
 
     Sprites.update()
 
@@ -161,7 +165,7 @@ while game:
     rolagem-=2
     if abs(rolagem)>SkyBox.get_width():
         rolagem=0
-    
+    Janela.blit(vida_tela(0,0))
 
     Sprites.draw(Janela)
 

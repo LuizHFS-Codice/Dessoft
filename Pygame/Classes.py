@@ -25,6 +25,9 @@ class navezinha(pygame.sprite.Sprite):
         self.rect.bottom= 0
         self.rect.centery=Altura/2
 
+        #vida
+        self.vida=Vida_Jogador
+
         #velocidade inicial
         self.speedx=0
         self.speedy=0
@@ -118,7 +121,7 @@ class Bombardeio(pygame.sprite.Sprite):
 
         def update(self):
             #atualiza a bala no eixo x
-            self.rect.y+=self.speedy
+            self.rect.y+=self.speedy*1.1
 
             #se for maior que a largura da tela, apaga o tiro
             if self.rect.bottom==Altura:
