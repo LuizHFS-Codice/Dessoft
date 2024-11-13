@@ -33,11 +33,11 @@ Bombasimg=pygame.transform.scale(Bombasimg,(Bomb,Bomb))
 
 #Imagem do Inimigo Voador
 IniVoaImg=pygame.image.load('Assets/Imagens/InimigoVoa.png').convert_alpha()
-IniVoaImg=pygame.transform.scale(IniVoaImg,(LargNav,AltNav))
+IniVoaImg=pygame.transform.scale(IniVoaImg,(LargNavm,AltNavm))
 
 #Imagem do Inimigo Trimpot
 TrimpotImg=pygame.image.load('Assets/Imagens/Trimpot.png').convert_alpha()
-TrimpotImg=pygame.transform.scale(TrimpotImg,(LargNav/3,AltNav*2))
+TrimpotImg=pygame.transform.scale(TrimpotImg,(LargNavt,AltNavt))
 
 #Imagem do Missil do Trimpot
 MisselImg=pygame.image.load('Assets/Imagens/Missil.png')
