@@ -13,6 +13,9 @@ AltNav=50
 LargBala=20
 AltBala=10
 
+LargMissil=10
+AltMissil=20
+
 
 #           Configurações Jogo
 
@@ -26,3 +29,10 @@ FPS=30
 #Velocidade nave
 Vx=15
 Vy=9
+
+#Variaveis de dano
+Vida_Jogador=10
+T_Inv=5#Tempo de Invulnerabilidade em segundos
+Vida_Inimigo_Voa=2
+Dano_Jogador=1
+Dano_inimigo_Voa=2
