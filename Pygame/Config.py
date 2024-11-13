@@ -7,7 +7,7 @@ from math import *
 Largura=824
 Altura=596
 
-LargNav=212/1.8
+LargNav=235/1.8
 AltNav=110/1.8
 LargNavm=130/1.3
 AltNavm=83/1.3

@@ -43,6 +43,9 @@ TrimpotImg=pygame.transform.scale(TrimpotImg,(LargNavt,AltNavt))
 MisselImg=pygame.image.load('Assets/Imagens/Missil.png').convert_alpha()
 MisselImg=pygame.transform.scale(MisselImg,(LargMissil,AltMissil))
 
+andando=pygame.image.load('Assets/Imagens/Andando.png').convert_alpha()
+andando=pygame.transform.scale(MisselImg,(LargNav,AltNav))
+
 #tela rolando para esquerda
 rolagem=0
 fundo=ceil(Largura/SkyBox.get_width()) +1
@@ -61,6 +64,7 @@ Bombas=pygame.sprite.Group()
 #Jogador
 jogador = navezinha(NaveImg,Sprites,Balas,Balaimg,Bombas,Bombasimg)
 Sprites.add(jogador)
+Sprites.add(andando)
 
 #Inimigo Voador
 for i in range(3):
