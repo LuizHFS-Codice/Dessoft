@@ -147,20 +147,47 @@ while game:
         if len(Dano)>0:
             jogador.vida-=Dano_Missil_Inimigo
             Inv=FPS*T_Inv
+        Dano=pygame.sprite.spritecollide(jogador,Trimpots,0)
+        if len(Dano)>0:
+            jogador.vida-=Dano_Colisão
+            Inv=FPS*T_Inv
+        Dano=pygame.sprite.spritecollide(jogador,Inimigos_Voadores,0)
+        if len(Dano)>0:
+            jogador.vida-=Dano_Colisão
+            Inv=FPS*T_Inv
+
     else:
         Inv-=1
+    if jogador.vida<=0:
+        game=False
+    #Colisão Tiro-Inimigo Voador
+    Dano=[]
+    Dano=pygame.sprite.groupcollide(Trimpots,Balas,0,1)
+    for Tripod in Dano:
+        Tripod.vida-=Dano_Tiro_Jogador
+        if Tripod.vida<=0:
+            Tripod.kill()
+    #Colisão Tiro-Tripod
     Dano=[]
     Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Balas,0,1)
     for Inimigos in Dano:
         Inimigos.vida-=Dano_Tiro_Jogador
         if Inimigos.vida<=0:
             Inimigos.kill()
+    #Colisão Bomba-Tripod
     Dano=[]
     Dano=pygame.sprite.groupcollide(Trimpots,Bombas,0,1)
     for Trimpod in Dano:
-        Trimpod.vida-=Dano_Tiro_Jogador
+        Trimpod.vida-=Dano_Bomba_Jogador
         if Trimpod.vida<=0:
             Trimpod.kill()
+    #Colisão Bomba-Inimigo Voador
+    Dano=[]
+    Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Bombas,0,1)
+    for Inimigos in Dano:
+        Inimigos.vida-=Dano_Bomba_Jogador
+        if Inimigos.vida<=0:
+            Inimigos.kill()
         
     vida_tela=font.render(f'{jogador.vida}', False, (255, 255, 255))
 
