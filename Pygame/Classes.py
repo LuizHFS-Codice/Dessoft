@@ -139,6 +139,7 @@ class InimigoVoa(pygame.sprite.Sprite):
         self.Sprites = Sprites
         self.Balas = Balas
         self.img=pygame.transform.scale(self.image,(LargNav,AltNav))
+        self.vida=Vida_Inimigo_Voa
         #Spawns
         self.rect=self.image.get_rect()
         self.rect.x=Largura
@@ -211,9 +212,10 @@ class InimigoBaixo(pygame.sprite.Sprite):
         self.Sprites = Sprites
         self.missel = missel
         self.img=pygame.transform.scale(self.image,(LargNav/3,AltNav))
+        self.vida=Vida_Tripod
         #Spawns
         self.rect=self.image.get_rect()
-        self.rect.x=random.randint(0,Largura)
+        self.rect.x=random.randint(100,Largura-200)
         self.rect.y=Altura-100 #Posição Aleatória de Spawn na Altura
         #Carregando balas
         self.speedx=0
@@ -224,10 +226,10 @@ class InimigoBaixo(pygame.sprite.Sprite):
         #Movimento lateral do Trimpot
         self.rect.x+=math.tan(self.speedx)*5
         #Limites Laterais
-        if self.rect.left<0:
-            self.rect.left=0
-        if self.rect.right>Largura/1.5:
-            self.rect.right=Largura/1.5
+        if self.rect.left<100:
+            self.rect.left=100
+        if self.rect.right>Largura//1.5:
+            self.rect.right=Largura//1.5
     
     def atirar(self):
         # O novo Missil vai ser criado logo acima e no centro vertical do Trimpot

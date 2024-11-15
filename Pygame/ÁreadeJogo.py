@@ -80,7 +80,9 @@ Sprites.add(Trimpots)
 movimento=0
 Inv=0 #Invulnerabilidade
 Ação=FPS//4
-
+ContVoadores=0
+ContTrimpots=0
+Pontuação=0
 while game:
     relógio.tick(FPS)
     for event in pygame.event.get():
@@ -147,15 +149,84 @@ while game:
         if len(Dano)>0:
             jogador.vida-=Dano_inimigo_Voa
             Inv=FPS*T_Inv
+            Pontuação-=10
         Dano=pygame.sprite.spritecollide(jogador,Missils,1)
         if len(Dano)>0:
             jogador.vida-=Dano_Missil_Inimigo
             Inv=FPS*T_Inv
+            Pontuação-=10
+        Dano=pygame.sprite.spritecollide(jogador,Trimpots,0)
+        if len(Dano)>0:
+            jogador.vida-=Dano_Colisão
+            Inv=FPS*T_Inv
+            Pontuação-=10
+        Dano=pygame.sprite.spritecollide(jogador,Inimigos_Voadores,0)
+        if len(Dano)>0:
+            jogador.vida-=Dano_Colisão
+            Inv=FPS*T_Inv
+            Pontuação-=10
+
     else:
         Inv-=1
+    if jogador.vida<=0:
+        game=False
+    #Colisão Tiro-Inimigo Voador
+    Dano=[]
+    Dano=pygame.sprite.groupcollide(Trimpots,Balas,0,1)
+    for Tripod in Dano:
+        Tripod.vida-=Dano_Tiro_Jogador
+        Pontuação+=50
+        if Tripod.vida<=0:
+            Tripod.kill()
+            ContTrimpots+=1
+            Pontuação+=250
+    #Colisão Tiro-Tripod
     Dano=[]
     Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Balas,0,1)
+    for Inimigos in Dano:
+        Inimigos.vida-=Dano_Tiro_Jogador
+        Pontuação+=10
+        if Inimigos.vida<=0:
+            Inimigos.kill()
+            ContVoadores+=1
+            Pontuação+=250
+    #Colisão Bomba-Tripod
+    Dano=[]
+    Dano=pygame.sprite.groupcollide(Trimpots,Bombas,0,1)
+    for Trimpod in Dano:
+        Trimpod.vida-=Dano_Bomba_Jogador
+        Pontuação+=10
+        if Trimpod.vida<=0:
+            Trimpod.kill()
+            ContTrimpots+=1
+            Pontuação+=150
+    #Colisão Bomba-Inimigo Voador
+    Dano=[]
+    Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Bombas,0,1)
+    for Inimigos in Dano:
+        Inimigos.vida-=Dano_Bomba_Jogador
+        Pontuação+=25
+        if Inimigos.vida<=0:
+            Inimigos.kill()
+            ContVoadores+=1
+            Pontuação+=150
+            
+    #Repawn dos inimigos
+    if ContTrimpots==3:
+        for i in range(3):
+            Trimpot=InimigoBaixo(TrimpotImg,Sprites,Missils,MisselImg)
+            Sprites.add(Trimpot)
+            Trimpots.add(Trimpot)
+            ContTrimpots=0
+    if ContVoadores==3:
+        for i in range(3):
+            InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas_Voadores,Balaimg)
+            Sprites.add(InimigoVoador)
+            Inimigos_Voadores.add(InimigoVoador)
+            ContVoadores=0
+    
     vida_tela=font.render(f'{jogador.vida}', False, (255, 255, 255))
+    Pontuação_Tela=font.render(f'{Pontuação}', False, (255, 255, 255))
 
     Sprites.update()
 
@@ -170,6 +241,7 @@ while game:
     if abs(rolagem)>SkyBox.get_width():
         rolagem=0
     Janela.blit(vida_tela,(0,0))
+    Janela.blit(Pontuação_Tela,(Largura-100,0))
 
     Sprites.draw(Janela)
 
