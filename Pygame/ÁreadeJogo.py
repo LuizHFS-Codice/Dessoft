@@ -5,6 +5,7 @@ from Classes import *
 from Config import *
 #from PrimeiraTela import *
 from Assets import *
+from definicoes import *
 
 pygame.init()
 
@@ -64,7 +65,6 @@ Bombas=pygame.sprite.Group()
 #Jogador
 jogador = navezinha(NaveImg,Sprites,Balas,Balaimg,Bombas,Bombasimg)
 Sprites.add(jogador)
-Sprites.add(andando)
 
 #Inimigo Voador
 for i in range(3):
