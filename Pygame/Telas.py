@@ -130,3 +130,43 @@ def framepadrao1(img):
         Janela.fill((255,255,255))
         Janela.blit(img,(0,0))
         pygame.display.update()
+
+def animacaomorte():
+    Janela.fill((255,255,255))
+    Janela.blit(Morte1,(0,0))
+    pygame.display.update()
+    pygame.time.delay(166)
+    Janela.fill((255,255,255))
+    Janela.blit(Morte2,(0,0))
+    pygame.display.update()
+    pygame.time.delay(166)
+    Janela.fill((255,255,255))
+    Janela.blit(Morte3,(0,0))
+    pygame.display.update()
+    pygame.time.delay(166)
+    Janela.fill((255,255,255))
+    Janela.blit(Morte4,(0,0))
+    pygame.display.update()
+    pygame.time.delay(166)
+    Janela.fill((255,255,255))
+    Morto=True
+    while Morto:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                Morto = False
+                pygame.quit
+        botcont2 = verificabotao(bmx,brmy,brmt,brma)
+        botcont3 = verificabotao(bmx,bvmy,bvmt,bvma)
+        if botcont2[0][0] in botcont2[1] and botcont2[0][1] in botcont2[2]:
+        #Acontece nada
+                if event.type==pygame.MOUSEBUTTONDOWN:
+                    Morto=False
+                    pygame.quit
+        if botcont3[0][0] in botcont3[1] and botcont3[0][1] in botcont3[2]:
+        #Acontece nada
+                if event.type==pygame.MOUSEBUTTONDOWN:
+                    Morto=False
+                    pygame.quit
+        Janela.fill((255,255,255))
+        Janela.blit(Morte5,(0,0))
+        pygame.display.update()

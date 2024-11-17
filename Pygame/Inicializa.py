@@ -22,6 +22,23 @@ telacreditos=pygame.transform.scale(telacreditos,(824,596))
 telafase2=pygame.image.load('Assets/Imagens/Fase2.png').convert_alpha()
 telafase2=pygame.transform.scale(telafase2,(824,596))
 
+#animacao
+#imagem de morte
+Morte1=pygame.image.load('Assets/Imagens/Morte1.png').convert_alpha()
+Morte1=pygame.transform.scale(Morte1,(824,596))#imagem da Morte
+
+Morte2=pygame.image.load('Assets/Imagens/Morte2.png').convert_alpha()
+Morte2=pygame.transform.scale(Morte2,(824,596))#imagem da Morte
+
+Morte3=pygame.image.load('Assets/Imagens/Morte3.png').convert_alpha()
+Morte3=pygame.transform.scale(Morte3,(824,596))#imagem da Morte
+
+Morte4=pygame.image.load('Assets/Imagens/Morte4.png').convert_alpha()
+Morte4=pygame.transform.scale(Morte4,(824,596))#imagem da Morte
+
+Morte5=pygame.image.load('Assets/Imagens/Morte5.png').convert_alpha()
+Morte5=pygame.transform.scale(Morte5,(824,596))
+
 #imagem da tela de preparação do do boss
 telaboss=pygame.image.load('Assets/Imagens/TelaBoss.png').convert_alpha()
 telaboss=pygame.transform.scale(telaboss,(824,596))

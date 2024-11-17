@@ -46,6 +46,20 @@ bycont = byvol
 #botao de continuar tela historia 2
 bxcont2 = 46
 bycont2 = 502
+
+#tamanho do botao da tela de morte
+brmt = 126
+brma = 103
+
+bvmt = 126
+bvma = 39
+
+#botao da tela de morte
+bmx = 665
+
+brmy = 443
+bvmy = 549
+
 #Frames
 FPS=30
 

@@ -1,4 +1,3 @@
-
 from Fase2 import *
 import pygame
 
