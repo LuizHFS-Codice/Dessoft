@@ -11,10 +11,10 @@ AltNavm=83/1.3
 LargNavt=50/1.1
 AltNavt=100/1.1
 
-LargBoss1=LargNav*1.5
-AltBoss1=AltNav*1.5
-LargBoss2=LargNav
-AltBoss2=AltNav
+LargBoss1=LargNav*3
+AltBoss1=AltNav*3
+LargBoss2=LargNav*1.5
+AltBoss2=AltNav*1.5
 LargBoss3=LargNavt*1.5
 AltBoss3=AltNavt*1.5
 
@@ -85,3 +85,4 @@ Dano_Bomba_Jogador=2
 Dano_inimigo_Voa=2.5
 Dano_Missil_Inimigo=5
 Dano_Colisão=10
+Dano_Laser=7.5

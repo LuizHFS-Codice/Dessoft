@@ -111,15 +111,18 @@ andando=pygame.transform.scale(LaserImg,(Largura,AltNavt))
 def BornBoss1(Largura,Altura):
     BossImg=pygame.image.load('Assets/Imagens/Tax_1.png').convert_alpha()
     BossImg=pygame.transform.scale(BossImg,(Largura,Altura))
+    return BossImg
 
 def BornBoss2(Largura,Altura):
-    Bossimg=pygame.image.load('Assets/Imagens/Tax_2.png').convert_alpha()
+    BossImg=pygame.image.load('Assets/Imagens/Tax_2.png').convert_alpha()
     BossImg=pygame.transform.scale(BossImg,(Largura,Altura))
+    return BossImg
 
 
 def BornBoss3(Largura,Altura):
-    Bossimg=pygame.image.load('Assets/Imagens/Tax_3.png').convert_alpha()
+    BossImg=pygame.image.load('Assets/Imagens/Tax_3.png').convert_alpha()
     BossImg=pygame.transform.scale(BossImg,(Largura,Altura))
+    return BossImg
 
 
 
@@ -168,11 +171,12 @@ jogador = navezinha(NaveImg,Sprites,Balas,Balaimg,Bombas,Bombasimg)
 Sprites.add(jogador)
 
 #Inimigo Voador
-for i in range(3):
-    InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas_Voadores,BalaIniimg)
-    Sprites.add(InimigoVoador)
-    Inimigos_Voadores.add(InimigoVoador)
-Sprites.add(Inimigos_Voadores)
+def ColocaVoadores(IniVoaImg):
+    for i in range(3):
+        InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas_Voadores,BalaIniimg)
+        Sprites.add(InimigoVoador)
+        Inimigos_Voadores.add(InimigoVoador)
+    Sprites.add(Inimigos_Voadores)
 
 def ColocaTrimpot(TrimpotImg):
     for i in range(3):
@@ -183,7 +187,8 @@ def ColocaTrimpot(TrimpotImg):
     Trimpots.add(Trimpot)
 
 def ColocaBoss(BossImg1,BossImg2,BossImg3):
-    Chefao1=Boss1(BossImg1,Sprites,Lasers,LaserImg)
+    time=0
+    Chefao1=Boss1(BossImg1,Sprites,Lasers,LaserImg,time)
     Sprites.add(Chefao1)
 
     Chefao2=Boss2(BossImg2,Sprites,Balas_Voadores,BalaIniimg)

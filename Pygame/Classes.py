@@ -264,16 +264,22 @@ class MissilInimigoBaixo(pygame.sprite.Sprite):
 class Boss1(pygame.sprite.Sprite):
     def __init__(self,img,Sprites,Laser,Laserimg,time):
         pygame.sprite.Sprite.__init__(self)
+
         self.image = img
         self.Sprites = Sprites
         self.Laser = Laser
+
         self.img=pygame.transform.scale(self.image,(LargBoss1,AltBoss1))
         self.vida=Vida_Inimigo_Voa*20
+
         #Spawns
+
         self.rect=self.image.get_rect()
         self.rect.x=Largura
         self.rect.y=Altura/2 #Posição do Spawn
+
         #Carregando Laser
+        
         self.speedx=0
         self.speedy=0
         self.Laser = Laser
@@ -343,6 +349,38 @@ class Boss2(pygame.sprite.Sprite):
         disparo=laser((self.Bala, self.rect.x, self.rect.y))
         self.BalaImg.add(disparo)
         self.Sprites.add(disparo)
+
+class Boss3(pygame.sprite.Sprite):
+    def __init__(self,img,Sprites,missel,misselimg):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = img
+        self.Sprites = Sprites
+        self.missel = missel
+        self.img=pygame.transform.scale(self.image,(LargNav*1.5,AltNav*2))
+        self.vida=Vida_Tripod*10
+        #Spawns
+        self.rect=self.image.get_rect()
+        self.rect.x=random.randint(100,Largura-200)
+        self.rect.y=Altura-100 #Posição Aleatória de Spawn na Altura
+        #Carregando balas
+        self.speedx=0
+        self.missel = missel
+        self.misselimg = misselimg
+        
+    def update(self):
+        #Movimento lateral do Trimpot
+        self.rect.x+=math.tan(self.speedx)*5
+        #Limites Laterais
+        if self.rect.left<100:
+            self.rect.left=100
+        if self.rect.right>Largura//1.5:
+            self.rect.right=Largura//1.5
+    
+    def atirar(self):
+        # O novo Missil vai ser criado logo acima e no centro vertical do Trimpot
+        atiro = MissilInimigoBaixo(self.misselimg, self.rect.x, self.rect.y)
+        self.missel.add(atiro)
+        self.Sprites.add(atiro)
 
 
     
