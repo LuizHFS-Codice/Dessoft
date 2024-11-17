@@ -1,8 +1,9 @@
 
 import pygame
 import random
-from math import *
+import math
 from Config import *
+
 
 class navezinha(pygame.sprite.Sprite):
     '''As principais funções da classe nave estão armazenadas aqui.'''
@@ -160,8 +161,8 @@ class InimigoVoa(pygame.sprite.Sprite):
         #     self.rect.x+=self.speedx
 
         #Velocidade do inimigo
-        self.rect.x+=(sin(self.speedx)+cos(self.speedx))*2
-        self.rect.y+=(sin(self.speedy)+cos(self.speedy))*2
+        self.rect.x+=(math.sin(self.speedx)+math.cos(self.speedx))*2
+        self.rect.y+=(math.sin(self.speedy)+math.cos(self.speedy))*2
         #Limites do inimigo Voador
         
         if self.rect.left<Largura/2:
@@ -175,12 +176,9 @@ class InimigoVoa(pygame.sprite.Sprite):
         
 
     def atirar(self):
+        '''Função Atirar: Permite o ataque, utilizando a classe "Tiro".'''
         # A nova bala vai ser criada logo acima e no centro horizontal da nave
-        atiro = TiroInimigo(self.Balaimg, self.rect.x, self.rect.y-2)
-        self.Balas.add(atiro)
-        self.Sprites.add(atiro)
-
-        atiro = TiroInimigo(self.Balaimg, self.rect.x, self.rect.y+AltNav/2)
+        atiro = TiroInimigo(self.Balaimg, self.rect.x, self.rect.y)
         self.Balas.add(atiro)
         self.Sprites.add(atiro)
 
@@ -193,7 +191,7 @@ class TiroInimigo(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         self.rect.x = x
-        self.rect.y = y+AltNav/4
+        self.rect.y = y+AltNav/2
 
         #cordenadas do tiro
 
@@ -227,7 +225,7 @@ class InimigoBaixo(pygame.sprite.Sprite):
         
     def update(self):
         #Movimento lateral do Trimpot
-        self.rect.x+=cos(self.speedx)*5
+        self.rect.x+=math.tan(self.speedx)*5
         #Limites Laterais
         if self.rect.left<100:
             self.rect.left=100
@@ -262,6 +260,7 @@ class MissilInimigoBaixo(pygame.sprite.Sprite):
             #se for maior que a largura da tela, apaga o tiro
             if self.rect.bottom < 0:
                 self.kill()
+
 # Input=int(input('Escolha um número para ver a documentação de cada classe, 1=Nave, 2=Tiro, 3=Inimigo Voador, 4=Tiro Inimigo> '))
 # if Input==1:
 #     help(navezinha)

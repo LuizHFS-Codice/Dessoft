@@ -103,6 +103,20 @@ MisselImg=pygame.transform.scale(MisselImg,(LargMissil,AltMissil))
 andando=pygame.image.load('Assets/Imagens/Andando.png').convert_alpha()
 andando=pygame.transform.scale(MisselImg,(LargNav,AltNav))
 
+#Guarda as Partes do Boss para spawnar depois
+def BornBoss1(Largura,Altura):
+    Bossimg=pygame.image.load('Assets/Imagens/Tax_1.png').convert_alpha()
+    BossImg=pygame.transform.scale(BossImg,(Largura,Altura))
+
+def BornBoss2(Largura,Altura):
+    Bossimg=pygame.image.load('Assets/Imagens/Tax_2.png').convert_alpha()
+    BossImg=pygame.transform.scale(BossImg,(Largura,Altura))
+
+def BornBoss3(Largura,Altura):
+    Bossimg=pygame.image.load('Assets/Imagens/Tax_3.png').convert_alpha()
+    BossImg=pygame.transform.scale(BossImg,(Largura,Altura))
+
+
 '''#imagem do boss
 BossImg=pygame.image.load('Assets/Imagens/Boss.png').convert_alpha()
 BossImg=pygame.transform.scale(BossImg,(824,596))'''
