@@ -261,6 +261,68 @@ class MissilInimigoBaixo(pygame.sprite.Sprite):
             if self.rect.bottom < 0:
                 self.kill()
 
+class Boss1(pygame.sprite.Sprite):
+    def __init__(self,img,Sprites,Laser,Laserimg,time):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = img
+        self.Sprites = Sprites
+        self.Laser = Laser
+        self.img=pygame.transform.scale(self.image,(LargBoss1,AltBoss1))
+        self.vida=Vida_Inimigo_Voa*20
+        #Spawns
+        self.rect=self.image.get_rect()
+        self.rect.x=Largura
+        self.rect.y=Altura/2 #Posição do Spawn
+        #Carregando Laser
+        self.speedx=0
+        self.speedy=0
+        self.Laser = Laser
+        self.Laserimg = Laserimg
+        self.time=time
+    
+    def update(self):
+        '''Função Update: limita o espaço que o Boss percorre
+        Junto com a velocidade que ele percorrerá.'''
+        #Velocidade do Boss
+        self.rect.x+=(math.sin(self.speedx)+math.cos(self.speedx))*4
+        self.rect.y+=(math.sin(self.speedy)+math.cos(self.speedy))*4
+
+        #Limites do Boss
+        
+        if self.rect.left<Largura/1.5:
+            self.rect.left=Largura/1.5
+        if self.rect.right>Largura:
+            self.rect.right=Largura
+        if self.rect.top<0:
+            self.rect.top=0
+        if self.rect.bottom>Altura-100:
+            self.rect.bottom=Altura-100
+
+    def disparar(self):
+        disparo=laser((self.Laserimg, self.rect.x, self.rect.y,self.time))
+        self.Laserimg.add(disparo)
+        self.Sprites.add(disparo)
+
+
+    
+class laser(pygame.sprite.Sprite):
+    def __init__(self, img, x, y, time):
+        '''Função __init__: Onde o laser aparecerá na tela
+        Na frente do Boss Principal e no meio da posição y dele.'''
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+
+        self.rect.x=x-LargBoss1
+        self.rect.y=y+AltBoss1/2
+
+        self.time=time
+    def update(self):
+            '''Após um tempo ser decorrido, o laser desaperecerá.'''
+            if self.time==0:
+                self.kill()
+
 # Input=int(input('Escolha um número para ver a documentação de cada classe, 1=Nave, 2=Tiro, 3=Inimigo Voador, 4=Tiro Inimigo> '))
 # if Input==1:
 #     help(navezinha)
