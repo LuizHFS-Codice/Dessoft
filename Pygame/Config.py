@@ -1,9 +1,6 @@
-import pygame
-from Assets import *
 from math import *
 
 #           Medições
-
 Largura=824
 Altura=596
 
@@ -22,12 +19,33 @@ AltMissil=20
 
 Bomb=20
 
-#           Configurações Jogo
+#Botão tamanho vermelho e Botão altura vermelho
+btv = 224
+bav = 46
 
+#botão cordenada x para todos os botões do começo
+bxcom = 569
 
-#tempo no jogo
-relógio=pygame.time.Clock()
+#botão cordenada y para o botão de começar
+bycom = 364
 
+#botão y, de créditos
+bycred = 430
+
+#botão y, de sair
+bysair = 495
+
+#botão x e botão y de voltar
+bxvol = 560
+byvol = 492
+
+#botao de continuar telas
+bxcont = bxvol
+bycont = byvol
+
+#botao de continuar tela historia 2
+bxcont2 = 46
+bycont2 = 502
 #Frames
 FPS=30
 

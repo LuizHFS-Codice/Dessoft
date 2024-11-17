@@ -1,9 +1,8 @@
 
 import pygame
 import random
-import math
+from math import *
 from Config import *
-
 
 class navezinha(pygame.sprite.Sprite):
     '''As principais funções da classe nave estão armazenadas aqui.'''
@@ -161,8 +160,8 @@ class InimigoVoa(pygame.sprite.Sprite):
         #     self.rect.x+=self.speedx
 
         #Velocidade do inimigo
-        self.rect.x+=(math.sin(self.speedx)+math.cos(self.speedx))*2
-        self.rect.y+=(math.sin(self.speedy)+math.cos(self.speedy))*2
+        self.rect.x+=(sin(self.speedx)+cos(self.speedx))*2
+        self.rect.y+=(sin(self.speedy)+cos(self.speedy))*2
         #Limites do inimigo Voador
         
         if self.rect.left<Largura/2:
@@ -177,7 +176,11 @@ class InimigoVoa(pygame.sprite.Sprite):
 
     def atirar(self):
         # A nova bala vai ser criada logo acima e no centro horizontal da nave
-        atiro = TiroInimigo(self.Balaimg, self.rect.x, self.rect.y)
+        atiro = TiroInimigo(self.Balaimg, self.rect.x, self.rect.y-2)
+        self.Balas.add(atiro)
+        self.Sprites.add(atiro)
+
+        atiro = TiroInimigo(self.Balaimg, self.rect.x, self.rect.y+AltNav/2)
         self.Balas.add(atiro)
         self.Sprites.add(atiro)
 
@@ -190,7 +193,7 @@ class TiroInimigo(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         self.rect.x = x
-        self.rect.y = y+AltNav/2
+        self.rect.y = y+AltNav/4
 
         #cordenadas do tiro
 
@@ -224,7 +227,7 @@ class InimigoBaixo(pygame.sprite.Sprite):
         
     def update(self):
         #Movimento lateral do Trimpot
-        self.rect.x+=math.tan(self.speedx)*5
+        self.rect.x+=cos(self.speedx)*5
         #Limites Laterais
         if self.rect.left<100:
             self.rect.left=100
