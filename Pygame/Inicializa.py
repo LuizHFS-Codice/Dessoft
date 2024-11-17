@@ -141,10 +141,6 @@ pygame.time.set_timer(andat,500)
 animacao = pygame.USEREVENT + 5
 pygame.time.set_timer(animacao, 166)
 
-#tela rolando para esquerda
-rolagem=0
-fundo=ceil(Largura/SkyBox.get_width()) +1
-
 #tempo no jogo
 relógio=pygame.time.Clock()
 #Fonte
@@ -178,10 +174,3 @@ def ColocaTrimpot(TrimpotImg):
         Sprites.add(Trimpot)
     Sprites.add(Trimpot)
     Trimpots.add(Trimpot)
-
-movimento=0
-Inv=0 #Invulnerabilidade
-Ação=FPS//4
-ContVoadores=0
-ContTrimpots=0
-Pontuação=0
