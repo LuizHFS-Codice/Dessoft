@@ -103,18 +103,24 @@ MisselImg=pygame.transform.scale(MisselImg,(LargMissil,AltMissil))
 andando=pygame.image.load('Assets/Imagens/Andando.png').convert_alpha()
 andando=pygame.transform.scale(MisselImg,(LargNav,AltNav))
 
+#Imagem do Laser
+LaserImg=pygame.image.load('Assets/Imagens/Laser.png').convert_alpha()
+andando=pygame.transform.scale(LaserImg,(Largura,AltNavt))
+
 #Guarda as Partes do Boss para spawnar depois
 def BornBoss1(Largura,Altura):
-    Bossimg=pygame.image.load('Assets/Imagens/Tax_1.png').convert_alpha()
+    BossImg=pygame.image.load('Assets/Imagens/Tax_1.png').convert_alpha()
     BossImg=pygame.transform.scale(BossImg,(Largura,Altura))
 
 def BornBoss2(Largura,Altura):
     Bossimg=pygame.image.load('Assets/Imagens/Tax_2.png').convert_alpha()
     BossImg=pygame.transform.scale(BossImg,(Largura,Altura))
 
+
 def BornBoss3(Largura,Altura):
     Bossimg=pygame.image.load('Assets/Imagens/Tax_3.png').convert_alpha()
     BossImg=pygame.transform.scale(BossImg,(Largura,Altura))
+
 
 
 '''#imagem do boss
@@ -154,6 +160,7 @@ Inimigos_Voadores=pygame.sprite.Group()
 Trimpots=pygame.sprite.Group()
 Missils=pygame.sprite.Group()
 Bombas=pygame.sprite.Group()
+Lasers=pygame.sprite.Group()
 
 
 #Jogador
@@ -174,3 +181,13 @@ def ColocaTrimpot(TrimpotImg):
         Sprites.add(Trimpot)
     Sprites.add(Trimpot)
     Trimpots.add(Trimpot)
+
+def ColocaBoss(BossImg1,BossImg2,BossImg3):
+    Chefao1=Boss1(BossImg1,Sprites,Lasers,LaserImg)
+    Sprites.add(Chefao1)
+
+    Chefao2=Boss2(BossImg2,Sprites,Balas_Voadores,BalaIniimg)
+    Sprites.add(Chefao2)
+
+    Chefao3=Boss3(BossImg3,Sprites,Missils,MisselImg)
+    Sprites.add(Chefao3)
