@@ -7,10 +7,12 @@ import random
 from math import *
 
 pygame.init()
+pygame.font.init()
+pygame.mixer.init()
 
 #       tamanho de janela
 Janela=pygame.display.set_mode((Largura,Altura))
-pygame.display.set_caption('Space Flight')
+pygame.display.set_caption('XSpace Flight')
 
 #           Imagens
 

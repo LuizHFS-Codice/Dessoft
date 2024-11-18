@@ -1,5 +1,9 @@
 from math import *
 import pygame
+
+pygame.init()
+pygame.font.init()
+pygame.mixer.init()
 #           Medições
 Largura=824
 Altura=596
@@ -87,3 +91,7 @@ Dano_inimigo_Voa=2.5
 Dano_Missil_Inimigo=5
 Dano_Colisão=10
 Dano_Laser=7.5
+
+#sons
+shot=pygame.mixer.Sound('Assets\Sons_efeitos\shot.wav')
+shotinim=pygame.mixer.Sound('Assets\Sons_efeitos\shotinim.wav')

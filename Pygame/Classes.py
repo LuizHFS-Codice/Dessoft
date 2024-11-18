@@ -6,6 +6,7 @@ import math
 from Config import *
 
 
+
 class navezinha(pygame.sprite.Sprite):
     '''As principais funções da classe nave estão armazenadas aqui.'''
     def __init__(self,NaveImg,sprites,Balas,Balaimg,Bombas,Bombasimg):
@@ -64,6 +65,7 @@ class navezinha(pygame.sprite.Sprite):
         atiro = Tiro(self.Balaimg, self.rect.x, self.rect.y)
         self.Balas.add(atiro)
         self.sprites.add(atiro)
+        pygame.mixer.Sound.play(shot)
 
         #Carrega o bombardeio
     def bomba(self):
