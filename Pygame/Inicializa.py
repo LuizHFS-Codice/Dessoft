@@ -15,7 +15,7 @@ pygame.display.set_caption('Space Flight')
 #           Imagens
 
 #imagem da tela de creditos
-telacreditos=pygame.image.load('Assets/Imagens/Creditos.png').convert_alpha()
+telacreditos=pygame.image.load('Assets/Imagens/Creditos.png').convert()
 telacreditos=pygame.transform.scale(telacreditos,(824,596))
 
 #imagem da fase2
