@@ -61,6 +61,7 @@ while game:
                 jogador.speedy+=Vy
             if event.key==pygame.K_DOWN:
                 jogador.speedy-=Vy
+        
     Sprites.update()
     movimento=0
     rolagem-=1

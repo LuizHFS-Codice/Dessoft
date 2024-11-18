@@ -279,7 +279,7 @@ class Boss1(pygame.sprite.Sprite):
         self.rect.y=Altura/2 #Posição do Spawn
 
         #Carregando Laser
-        
+
         self.speedx=0
         self.speedy=0
         self.Laser = Laser
@@ -375,6 +375,8 @@ class Boss3(pygame.sprite.Sprite):
             self.rect.left=100
         if self.rect.right>Largura//1.5:
             self.rect.right=Largura//1.5
+        if self.rect.bottom>Altura:
+            self.rect.bottom=Altura
     
     def atirar(self):
         # O novo Missil vai ser criado logo acima e no centro vertical do Trimpot
