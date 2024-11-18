@@ -80,12 +80,6 @@ python Rodajogo.py
 ##Controles do Jogo
 
 - **Movimentação**: Use as **setas direcionais** para mover a nave.
-- **Atirar**: Pressione a tecla **espaço** para disparar projéteis.
-- **Lançar Bombas**: Pressione a tecla **B** para lançar bombas.
+- **Atirar**: Pressione a tecla **Z** para disparar projéteis.
+- **Lançar Bombas**: Pressione a tecla **X** para lançar bombas.
 
-
-
-
-
-
-Com este README atualizado, o projeto atende aos critérios da rúbrica, como clareza na descrição, estrutura detalhada, documentação dos processos e informações sobre a execução do jogo. Caso precise de ajustes adicionais, estou à disposição!
