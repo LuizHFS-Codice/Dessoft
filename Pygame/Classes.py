@@ -47,6 +47,7 @@ class navezinha(pygame.sprite.Sprite):
         é realizado.'''
         self.rect.x+=self.speedx#Movimento no Eixo X
         self.rect.y+=self.speedy#Movimento no Eixo Y
+        
         #Limites
         if self.rect.left<0:
             self.rect.left=0
@@ -56,7 +57,20 @@ class navezinha(pygame.sprite.Sprite):
             self.rect.top=0
         if self.rect.bottom>Altura:
             self.rect.bottom=Altura
-            
+        
+        # # Melhoria na lógica de limites:
+        # def limitar_movimentos(self):
+        #     self.rect.left  = max(0, self.rect.left)
+        #     self.rect.right = min(Largura, self.rect.right)
+        #     self.rect.top = max(0, self.rect.top)
+        #     self.rect.bottom = min(Altura, self.rect.bottom)
+
+        # def update(self):
+
+        #     self.rect.x  += self.speedx
+        #     self.rect.y += self.speedy
+        #     self.limitar_movimento()
+
         #Carrega a ação de atirar
     def atirar(self):
         '''Função Atirar: Permite o ataque, utilizando a classe "Tiro".'''
