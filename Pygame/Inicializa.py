@@ -164,6 +164,7 @@ Trimpots=pygame.sprite.Group()
 Missils=pygame.sprite.Group()
 Bombas=pygame.sprite.Group()
 Lasers=pygame.sprite.Group()
+Boss=pygame.sprite.Group()
 
 
 #Jogador
@@ -190,9 +191,12 @@ def ColocaBoss(BossImg1,BossImg2,BossImg3):
     time=0
     Chefao1=Boss1(BossImg1,Sprites,Lasers,LaserImg,time)
     Sprites.add(Chefao1)
+    Boss.add(Chefao1)
 
     Chefao2=Boss2(BossImg2,Sprites,Balas_Voadores,BalaIniimg)
     Sprites.add(Chefao2)
+    Boss.add(Chefao2)
 
     Chefao3=Boss3(BossImg3,Sprites,Missils,MisselImg)
     Sprites.add(Chefao3)
+    Boss.add(Chefao3)

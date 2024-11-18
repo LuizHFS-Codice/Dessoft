@@ -28,7 +28,7 @@ BossImg2=BornBoss2(LargBoss2,AltBoss2)
 BossImg3=BornBoss3(LargBoss3,AltBoss3)
 ColocaBoss(BossImg1,BossImg2,BossImg3)
 
-
+time=-1
 game=True
 while game:
     relógio.tick(FPS)
@@ -61,7 +61,37 @@ while game:
                 jogador.speedy+=Vy
             if event.key==pygame.K_DOWN:
                 jogador.speedy-=Vy
-        
+        PeçasXY=3
+        for Parte in Boss:
+            if PeçasXY>1:
+                movinivoa=random.randint(0,30)
+                if movinivoa in range(0,5):
+                    Parte.speedx-=Vx 
+                if movinivoa in range(5,10):
+                    Parte.speedy-=Vy
+                if movinivoa in range(10,15):
+                    Parte.speedx+=Vx
+                if movinivoa in range(15,20):
+                    Parte.speedy+=Vy
+                if PeçasXY==3:
+                    if movinivoa in range(20,30):
+                            if time<0:
+                                time=FPS*2
+                            elif time==0:
+                                Parte.disparar()
+                                time-=1
+                            else:
+                                time-=1
+                PeçasXY-=1
+            else:
+                MãoChão=random.randint(0,15)
+                if MãoChão in range(0,5):
+                    Parte.speedx-=Vx
+                if MãoChão in range(5,10):
+                    Parte.speedx+=Vx
+                
+
+
     Sprites.update()
     movimento=0
     rolagem-=1
