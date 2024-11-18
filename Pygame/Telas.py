@@ -206,7 +206,6 @@ def fase1():
     fundo=ceil(Largura/SkyBox.get_width()) +1
 
     #       Tela inicial
-
     framepadrao(Historia1)
     framepadrao1(Historia2)
     framepadrao(Historia3)
@@ -352,6 +351,7 @@ def verificabotao(bx,by,bt,ba):
     return pos, xb, yb
 
 def frameinicio():
+    framepadrao(Aviso)
     inicio = True
     while inicio:
         for event in pygame.event.get():

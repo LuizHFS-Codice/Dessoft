@@ -42,34 +42,20 @@ class navezinha(pygame.sprite.Sprite):
         self.Bombasimg=Bombasimg
 
     #Atualiza as coordenadas
+        
+    # Melhoria na lógica de limites: (@Luiz analisar!!)
+    def limitar_movimentos(self):
+        self.rect.left  = max(0, self.rect.left)
+        self.rect.right = min(Largura, self.rect.right)
+        self.rect.top = max(0, self.rect.top)
+        self.rect.bottom = min(Altura, self.rect.bottom)
+
     def update(self):
         '''Função update: é onde os limites são delimitados e o movimento da nave
         é realizado.'''
-        self.rect.x+=self.speedx#Movimento no Eixo X
-        self.rect.y+=self.speedy#Movimento no Eixo Y
-        
-        #Limites
-        if self.rect.left<0:
-            self.rect.left=0
-        if self.rect.right>Largura:
-            self.rect.right=Largura
-        if self.rect.top<0:
-            self.rect.top=0
-        if self.rect.bottom>Altura:
-            self.rect.bottom=Altura
-        
-        # # Melhoria na lógica de limites: (@Luiz analisar!!)
-        # def limitar_movimentos(self):
-        #     self.rect.left  = max(0, self.rect.left)
-        #     self.rect.right = min(Largura, self.rect.right)
-        #     self.rect.top = max(0, self.rect.top)
-        #     self.rect.bottom = min(Altura, self.rect.bottom)
-
-        # def update(self):
-
-        #     self.rect.x  += self.speedx
-        #     self.rect.y += self.speedy
-        #     self.limitar_movimento()
+        self.rect.x  += self.speedx
+        self.rect.y += self.speedy
+        self.limitar_movimentos()
 
         #Carrega a ação de atirar
     def atirar(self):
@@ -305,19 +291,19 @@ class Boss1(pygame.sprite.Sprite):
         self.speedy=0
         self.Laser = Laser
         self.Laserimg = Laserimg
-        self.time=time
+        self.time=FPS*2
     
     def update(self):
         '''Função Update: limita o espaço que o Boss percorre
         Junto com a velocidade que ele percorrerá.'''
         #Velocidade do Boss
-        self.rect.x+=(math.sin(self.speedx)+math.cos(self.speedx))*4
-        self.rect.y+=(math.sin(self.speedy)+math.cos(self.speedy))*4
+        self.rect.x+=(math.sin(self.speedx)+math.cos(self.speedx))*2
+        self.rect.y+=(math.sin(self.speedy)+math.cos(self.speedy))*2
 
         #Limites do Boss
         
-        if self.rect.left<Largura/1.5:
-            self.rect.left=Largura/1.5
+        if self.rect.left<Largura/3:
+            self.rect.left=Largura/3
         if self.rect.right>Largura:
             self.rect.right=Largura
         if self.rect.top<0:
@@ -326,8 +312,8 @@ class Boss1(pygame.sprite.Sprite):
             self.rect.bottom=Altura-100
 
     def disparar(self):
-        disparo=laser((self.Laserimg, self.rect.x, self.rect.y,self.time))
-        self.Laserimg.add(disparo)
+        disparo=laser(self.Laserimg, self.rect.x, self.rect.y,self.time)
+        self.Laser.add(disparo)
         self.Sprites.add(disparo)
 
 class Boss2(pygame.sprite.Sprite):
@@ -352,13 +338,13 @@ class Boss2(pygame.sprite.Sprite):
         '''Função Update: limita o espaço que o Boss percorre
         Junto com a velocidade que ele percorrerá.'''
         #Velocidade do Boss
-        self.rect.x+=(math.sin(self.speedx)+math.cos(self.speedx))*8
-        self.rect.y+=(math.sin(self.speedy)+math.cos(self.speedy))*8
+        self.rect.x+=(math.sin(self.speedx)+math.cos(self.speedx))*4
+        self.rect.y+=(math.sin(self.speedy)+math.cos(self.speedy))*4
 
         #Limites do Boss
         
-        if self.rect.left<Largura/1.5:
-            self.rect.left=Largura/1.5
+        if self.rect.left<Largura/3:
+            self.rect.left=Largura/3
         if self.rect.right>Largura:
             self.rect.right=Largura
         if self.rect.top<0:
@@ -367,7 +353,7 @@ class Boss2(pygame.sprite.Sprite):
             self.rect.bottom=Altura-100
 
     def disparar(self):
-        disparo=laser((self.Bala, self.rect.x, self.rect.y))
+        disparo=TiroInimigo((self.Bala, self.rect.x, self.rect.y))
         self.BalaImg.add(disparo)
         self.Sprites.add(disparo)
 
@@ -414,16 +400,19 @@ class laser(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = img
+        self.image=pygame.transform.scale(self.image,(Largura,AltBoss1/4))
         self.rect = self.image.get_rect()
 
-        self.rect.x=x-LargBoss1
+        self.rect.x=x+LargBoss1
         self.rect.y=y+AltBoss1/2
+        self.speedy=0
 
-        self.time=time
+        self.time=FPS*2
     def update(self):
             '''Após um tempo ser decorrido, o laser desaperecerá.'''
             if self.time==0:
                 self.kill()
+            self.time-=1
 
 # Input=int(input('Escolha um número para ver a documentação de cada classe, 1=Nave, 2=Tiro, 3=Inimigo Voador, 4=Tiro Inimigo> '))
 # if Input==1:
