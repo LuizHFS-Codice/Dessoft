@@ -15,6 +15,7 @@ def fase2():
 
     #       Fase 2
     #coloca inimigo novo
+    ColocaVoadores(IniVoaImg)
     TrimpotImg = BornTrimpot(LargNavt,AltNavt)
     ColocaTrimpot(TrimpotImg)
 
@@ -187,6 +188,9 @@ def fase2():
         Sprites.draw(Janela)
 
         pygame.display.update()
+        if Pontuação > 3000:
+            frametelaboss() 
+            game=False
 
     pygame.quit
 
@@ -390,8 +394,8 @@ def framecreditos():
             if event.type==pygame.QUIT:
                 credit = False
                 pygame.quit
-        botvolt = verificabotao(bxvol,byvol,btv,bav)
-        if botvolt[0][0] in botvolt[1] and botvolt[0][1] in botvolt[2]:
+            botvolt = verificabotao(bxvol,byvol,btv,bav)
+            if botvolt[0][0] in botvolt[1] and botvolt[0][1] in botvolt[2]:
                 #volta pro incio
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     credit=False
@@ -407,9 +411,9 @@ def framefase2():
             if event.type==pygame.QUIT:
                 Fase2 = False
                 pygame.quit
-        botcont = verificabotao(bxcont,bycont,btv,bav)
-        if botcont[0][0] in botcont[1] and botcont[0][1] in botcont[2]:
-        #Continua o games
+            botcont = verificabotao(bxcont,bycont,btv,bav)
+            if botcont[0][0] in botcont[1] and botcont[0][1] in botcont[2]:
+            #Continua o games
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     Fase2=False
                     fase2()
@@ -418,20 +422,20 @@ def framefase2():
         pygame.display.update()
 
 def frametelaboss():
-    BossFight=True
-    while BossFight:
+    telabossa=True
+    while telabossa:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
-                BossFight = False
+                telabossa = False
                 pygame.quit
-        botcont = verificabotao(bxcont,bycont,btv,bav)
-        if botcont[0][0] in botcont[1] and botcont[0][1] in botcont[2]:
-        #Continua o games
+            botcont = verificabotao(bxcont,bycont,btv,bav)
+            if botcont[0][0] in botcont[1] and botcont[0][1] in botcont[2]:
+            #Continua o games
                 if event.type==pygame.MOUSEBUTTONDOWN:
-                    BossFight=False
-        Janela.fill((255,255,255))
-        Janela.blit(telaboss,(0,0))
-        pygame.display.update()
+                    telabossa=False
+            Janela.fill((255,255,255))
+            Janela.blit(telaboss,(0,0))
+            pygame.display.update()
 
 def framepadrao(img):
     BossFight=True
@@ -440,9 +444,9 @@ def framepadrao(img):
             if event.type==pygame.QUIT:
                 BossFight = False
                 pygame.quit
-        botcont = verificabotao(bxcont,bycont,btv,bav)
-        if botcont[0][0] in botcont[1] and botcont[0][1] in botcont[2]:
-        #Continua o games
+            botcont = verificabotao(bxcont,bycont,btv,bav)
+            if botcont[0][0] in botcont[1] and botcont[0][1] in botcont[2]:
+            #Continua o games
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     BossFight=False
         Janela.fill((255,255,255))
@@ -456,9 +460,9 @@ def framepadrao1(img):
             if event.type==pygame.QUIT:
                 BossFight = False
                 pygame.quit
-        botcont2 = verificabotao(bxcont2,bycont2,btv,bav)
-        if botcont2[0][0] in botcont2[1] and botcont2[0][1] in botcont2[2]:
-        #Continua o games
+            botcont2 = verificabotao(bxcont2,bycont2,btv,bav)
+            if botcont2[0][0] in botcont2[1] and botcont2[0][1] in botcont2[2]:
+            #Continua o games
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     BossFight=False
         Janela.fill((255,255,255))
@@ -489,15 +493,15 @@ def animacaomorte():
             if event.type==pygame.QUIT:
                 Morto = False
                 pygame.quit
-        botcont2 = verificabotao(bmx,brmy,brmt,brma)
-        botcont3 = verificabotao(bmx,bvmy,bvmt,bvma)
-        if botcont2[0][0] in botcont2[1] and botcont2[0][1] in botcont2[2]:
-        #Acontece nada
+            botcont2 = verificabotao(bmx,brmy,brmt,brma)
+            botcont3 = verificabotao(bmx,bvmy,bvmt,bvma)
+            if botcont2[0][0] in botcont2[1] and botcont2[0][1] in botcont2[2]:
+            #Acontece nada
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     Morto=False
                     fase1()
-        if botcont3[0][0] in botcont3[1] and botcont3[0][1] in botcont3[2]:
-        #Acontece nada
+            if botcont3[0][0] in botcont3[1] and botcont3[0][1] in botcont3[2]:
+            #Acontece nada
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     Morto=False
                     frameinicio()

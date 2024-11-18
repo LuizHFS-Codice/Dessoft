@@ -75,13 +75,13 @@ while game:
                     Parte.speedy+=Vy
                 if PeçasXY==3:
                     if movinivoa in range(20,30):
-                            if time<0:
-                                time=FPS*2
-                            elif time==0:
-                                Parte.disparar()
-                                time-=1
-                            else:
-                                time-=1
+                        if time<0:
+                            time=FPS*2
+                        elif time==0:
+                            Parte.disparar()
+                            time-=1
+                        else:
+                            time-=1
                 PeçasXY-=1
             else:
                 MãoChão=random.randint(0,15)
@@ -89,6 +89,8 @@ while game:
                     Parte.speedx-=Vx
                 if MãoChão in range(5,10):
                     Parte.speedx+=Vx
+                if MãoChão in range(10,15):
+                    MãoChão
                 
 
 
