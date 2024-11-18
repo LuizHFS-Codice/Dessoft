@@ -81,7 +81,7 @@ Vida_Inimigo_Voa=10
 Vida_Tripod=15
 Vida_Boss=200
 #Variáveis de dano
-Dano_Tiro_Jogador=100
+Dano_Tiro_Jogador=1
 Dano_Bomba_Jogador=2
 Dano_inimigo_Voa=2.5
 Dano_Missil_Inimigo=5
