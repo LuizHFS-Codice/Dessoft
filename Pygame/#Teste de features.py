@@ -26,7 +26,7 @@ fundo=ceil(Largura/SkyBox.get_width()) +1
 BossImg1=BornBoss1(LargBoss1,AltBoss1)
 BossImg2=BornBoss2(LargBoss2,AltBoss2)
 BossImg3=BornBoss3(LargBoss3,AltBoss3)
-ColocaBoss(BossImg1,BossImg2,BossImg3)
+ColocaBoss1(BossImg1)
 
 time=-1
 game=True
@@ -75,13 +75,13 @@ while game:
                     Parte.speedy+=Vy
                 if PeçasXY==3:
                     if movinivoa in range(20,30):
-                        if time<0:
-                            time=FPS*2
-                        elif time==0:
-                            Parte.disparar()
-                            time-=1
-                        else:
-                            time-=1
+                            if time<0:
+                                time=FPS*2
+                            elif time==0:
+                                Parte.disparar()
+                                time-=1
+                            else:
+                                time-=1
                 PeçasXY-=1
             else:
                 MãoChão=random.randint(0,15)
@@ -89,11 +89,7 @@ while game:
                     Parte.speedx-=Vx
                 if MãoChão in range(5,10):
                     Parte.speedx+=Vx
-                if MãoChão in range(10,15):
-                    MãoChão
                 
-
-
     Sprites.update()
     movimento=0
     rolagem-=1
