@@ -110,6 +110,7 @@ def fase2():
             Inv-=1
         if jogador.vida<=0:
             game=False
+            animacaomorte()
         #Colisão Tiro-Inimigo Voador
         Dano=[]
         Dano=pygame.sprite.groupcollide(Trimpots,Balas,0,1)
@@ -190,6 +191,8 @@ def fase2():
     pygame.quit
 
 def fase1():
+
+    ColocaVoadores(IniVoaImg)
 
     movimento=0
     Inv=0 #Invulnerabilidade
@@ -275,6 +278,7 @@ def fase1():
         else:
             Inv-=1
         if jogador.vida<=0:
+            game=False
             animacaomorte()
         #Colisão Tiro-Inimigo Voador
         Dano=[]
@@ -465,19 +469,19 @@ def animacaomorte():
     Janela.fill((255,255,255))
     Janela.blit(Morte1,(0,0))
     pygame.display.update()
-    pygame.time.delay(166)
+    pygame.time.delay(350)
     Janela.fill((255,255,255))
     Janela.blit(Morte2,(0,0))
     pygame.display.update()
-    pygame.time.delay(166)
+    pygame.time.delay(350)
     Janela.fill((255,255,255))
     Janela.blit(Morte3,(0,0))
     pygame.display.update()
-    pygame.time.delay(166)
-    Janela.fill((255,255,255))
+    pygame.time.delay(350)
+    Janela.fill((255,255,255 ))
     Janela.blit(Morte4,(0,0))
     pygame.display.update()
-    pygame.time.delay(166)
+    pygame.time.delay(400)
     Janela.fill((255,255,255))
     Morto=True
     while Morto:
@@ -490,13 +494,13 @@ def animacaomorte():
         if botcont2[0][0] in botcont2[1] and botcont2[0][1] in botcont2[2]:
         #Acontece nada
                 if event.type==pygame.MOUSEBUTTONDOWN:
-                    pygame.quit
                     Morto=False
+                    fase1()
         if botcont3[0][0] in botcont3[1] and botcont3[0][1] in botcont3[2]:
         #Acontece nada
                 if event.type==pygame.MOUSEBUTTONDOWN:
-                    pygame.quit
                     Morto=False
+                    frameinicio()
         Janela.fill((255,255,255))
         Janela.blit(Morte5,(0,0))
         pygame.display.update()

@@ -1,5 +1,5 @@
 from math import *
-
+import pygame
 #           Medições
 Largura=824
 Altura=596
@@ -11,12 +11,12 @@ AltNavm=83/1.3
 LargNavt=50/1.1
 AltNavt=100/1.1
 
-LargBoss1=LargNav*1.5
-AltBoss1=AltNav*1.5
-LargBoss2=LargNav
-AltBoss2=AltNav
-LargBoss3=LargNavt*1.5
-AltBoss3=AltNavt*1.5
+LargBoss1=LargNav*2.5
+AltBoss1=AltNav*2.5
+LargBoss2=LargNav*2
+AltBoss2=AltNav*2
+LargBoss3=LargNavt*3
+AltBoss3=AltNavt*3
 
 LargBala=20
 AltBala=10
@@ -85,3 +85,4 @@ Dano_Bomba_Jogador=2
 Dano_inimigo_Voa=2.5
 Dano_Missil_Inimigo=5
 Dano_Colisão=10
+Dano_Laser=7.5
