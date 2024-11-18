@@ -72,6 +72,7 @@ class navezinha(pygame.sprite.Sprite):
         boom=Bombardeio(self.Bombasimg, self.rect.x,self.rect.y)
         self.Bombas.add(boom)
         self.sprites.add(boom)
+        pygame.mixer.Sound.play(bomb)
 
 
 
@@ -190,6 +191,7 @@ class InimigoVoa(pygame.sprite.Sprite):
         atiro = TiroInimigo(self.BalaIniimg, self.rect.x, self.rect.y)
         self.Balas_Voadores.add(atiro)
         self.Sprites.add(atiro)
+        pygame.mixer.Sound.play(shotinim)
 
     # Sugestao do Atirar 
     # def atirar(self, tiro_class, img, grupo_balas, grupo_sprites):
@@ -252,6 +254,7 @@ class InimigoBaixo(pygame.sprite.Sprite):
         atiro = MissilInimigoBaixo(self.misselimg, self.rect.x, self.rect.y)
         self.missel.add(atiro)
         self.Sprites.add(atiro)
+        pygame.mixer.Sound.play(rocket)
 
 class MissilInimigoBaixo(pygame.sprite.Sprite):
         def __init__(self, img, x, y):

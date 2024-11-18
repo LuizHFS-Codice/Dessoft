@@ -95,3 +95,5 @@ Dano_Laser=7.5
 #sons
 shot=pygame.mixer.Sound('Assets\Sons_efeitos\shot.wav')
 shotinim=pygame.mixer.Sound('Assets\Sons_efeitos\shotinim.wav')
+rocket=pygame.mixer.Sound('Assets\Sons_efeitos\missil.wav')
+bomb=pygame.mixer.Sound('Assets\Sons_efeitos\Bomb.wav')
