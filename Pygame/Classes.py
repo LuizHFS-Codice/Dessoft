@@ -42,34 +42,20 @@ class navezinha(pygame.sprite.Sprite):
         self.Bombasimg=Bombasimg
 
     #Atualiza as coordenadas
+        
+    # Melhoria na lógica de limites: (@Luiz analisar!!)
+    def limitar_movimentos(self):
+        self.rect.left  = max(0, self.rect.left)
+        self.rect.right = min(Largura, self.rect.right)
+        self.rect.top = max(0, self.rect.top)
+        self.rect.bottom = min(Altura, self.rect.bottom)
+
     def update(self):
         '''Função update: é onde os limites são delimitados e o movimento da nave
         é realizado.'''
-        self.rect.x+=self.speedx#Movimento no Eixo X
-        self.rect.y+=self.speedy#Movimento no Eixo Y
-        
-        #Limites
-        if self.rect.left<0:
-            self.rect.left=0
-        if self.rect.right>Largura:
-            self.rect.right=Largura
-        if self.rect.top<0:
-            self.rect.top=0
-        if self.rect.bottom>Altura:
-            self.rect.bottom=Altura
-        
-        # # Melhoria na lógica de limites: (@Luiz analisar!!)
-        # def limitar_movimentos(self):
-        #     self.rect.left  = max(0, self.rect.left)
-        #     self.rect.right = min(Largura, self.rect.right)
-        #     self.rect.top = max(0, self.rect.top)
-        #     self.rect.bottom = min(Altura, self.rect.bottom)
-
-        # def update(self):
-
-        #     self.rect.x  += self.speedx
-        #     self.rect.y += self.speedy
-        #     self.limitar_movimento()
+        self.rect.x  += self.speedx
+        self.rect.y += self.speedy
+        self.limitar_movimentos()
 
         #Carrega a ação de atirar
     def atirar(self):
@@ -115,6 +101,12 @@ class Tiro(pygame.sprite.Sprite):
         #se for maior que a largura da tela, apaga o tiro
         if self.rect.bottom > Largura:
             self.kill()
+        
+        #Sugestão Classe tiro
+        # def update(self):
+        #     self.rect.x += self.speedx
+        #     if not self.rect.colliderect(pygame.Rect(0, 0, Largura, Altura)):
+        #         self.kill()
 
 
 
@@ -416,9 +408,8 @@ class laser(pygame.sprite.Sprite):
         self.speedy=0
 
         self.time=FPS*2
-    def update(self,y):
+    def update(self):
             '''Após um tempo ser decorrido, o laser desaperecerá.'''
-            self.rect.y=y+AltBoss1/2
             if self.time==0:
                 self.kill()
             self.time-=1
