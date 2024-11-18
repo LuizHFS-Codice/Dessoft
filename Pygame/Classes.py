@@ -137,14 +137,14 @@ class Bombardeio(pygame.sprite.Sprite):
 #Classe do Inimigo Voador
 class InimigoVoa(pygame.sprite.Sprite):
     '''Classe "Inimigo Voador", um dos oponentes.'''
-    def __init__(self,img,Sprites,Balas,Balaimg):
+    def __init__(self,img,Sprites,Balas_Voadores,BalaIniimg):
         '''Função __init__: Determina onde o inimigo nascerá
         O inimigo necessariamente nascerá do lado direito da tela
         A função também carrega as balas do inimigo.'''
         pygame.sprite.Sprite.__init__(self)
         self.image = img
         self.Sprites = Sprites
-        self.Balas = Balas
+        self.Balas_Voadores = Balas_Voadores
         self.img=pygame.transform.scale(self.image,(LargNav,AltNav))
         self.vida=Vida_Inimigo_Voa
         #Spawns
@@ -154,8 +154,8 @@ class InimigoVoa(pygame.sprite.Sprite):
         #Carregando balas
         self.speedx=0
         self.speedy=0
-        self.Balas = Balas
-        self.Balaimg = Balaimg
+        self.Balas_Voadores = Balas_Voadores
+        self.BalaIniimg = BalaIniimg
         
 
     def update(self):
@@ -185,8 +185,8 @@ class InimigoVoa(pygame.sprite.Sprite):
     def atirar(self):
         '''Função Atirar: Permite o ataque, utilizando a classe "Tiro".'''
         # A nova bala vai ser criada logo acima e no centro horizontal da nave
-        atiro = TiroInimigo(self.Balaimg, self.rect.x, self.rect.y)
-        self.Balas.add(atiro)
+        atiro = TiroInimigo(self.BalaIniimg, self.rect.x, self.rect.y)
+        self.Balas_Voadores.add(atiro)
         self.Sprites.add(atiro)
 
     # Sugestao do Atirar 
@@ -283,7 +283,7 @@ class Boss1(pygame.sprite.Sprite):
         self.Laser = Laser
 
         self.img=pygame.transform.scale(self.image,(LargBoss1,AltBoss1))
-        self.vida=Vida_Inimigo_Voa*20
+        self.vida=Vida_Boss
 
         #Spawns
 
@@ -409,7 +409,7 @@ class laser(pygame.sprite.Sprite):
         self.image=pygame.transform.scale(self.image,(Largura,AltBoss1/4))
         self.rect = self.image.get_rect()
 
-        self.rect.x=x+LargBoss1
+        self.rect.x=x-LargBoss1*2-150
         self.rect.y=y+AltBoss1/2
         self.speedy=0
 

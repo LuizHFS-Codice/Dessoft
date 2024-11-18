@@ -22,6 +22,9 @@ telacreditos=pygame.transform.scale(telacreditos,(824,596))
 telafase2=pygame.image.load('Assets/Imagens/Fase2.png').convert_alpha()
 telafase2=pygame.transform.scale(telafase2,(824,596))
 
+Ganhaste=pygame.image.load('Assets/Imagens/Ganhaste.png').convert_alpha()
+Ganhaste=pygame.transform.scale(Ganhaste,(824,596))
+
 #animacao
 #imagem de morte
 Morte1=pygame.image.load('Assets/Imagens/Morte1.png').convert_alpha()
@@ -52,8 +55,14 @@ Historia2=pygame.transform.scale(Historia2,(824,596))
 Historia3=pygame.image.load('Assets/Imagens/Historia3.png').convert_alpha()
 Historia3=pygame.transform.scale(Historia3,(824,596))
 
-Aviso=pygame.image.load('Assets/Imagens/Aviso.png').convert_alpha()
-Aviso=pygame.transform.scale(Aviso,(824,596))
+taxano=pygame.image.load('Assets/Imagens/Crueltataxano.png').convert_alpha()
+taxano=pygame.transform.scale(taxano,(824,596))
+
+elon=pygame.image.load('Assets/Imagens/ElonMusky.png').convert_alpha()
+elon=pygame.transform.scale(elon,(824,596))
+
+Avisopng=pygame.image.load('Assets/Imagens/Aviso.png').convert_alpha()
+Avisopng=pygame.transform.scale(Avisopng,(824,596))
 '''
 telacreditos=pygame.image.load('Assets/Imagens/Creditos.png').convert_alpha()
 telacreditos=pygame.transform.scale(telacreditos,(824,596))'''
@@ -133,6 +142,10 @@ BossImg=pygame.transform.scale(BossImg,(824,596))'''
 #           Configurações Jogo
 
 #definindo espaço de tempo para atirar
+
+timertirob = pygame.USEREVENT + 1
+pygame.time.set_timer(timertirob,1000)
+
 timertiroiv = pygame.USEREVENT + 1
 pygame.time.set_timer(timertiroiv,500)
 
@@ -145,6 +158,9 @@ pygame.time.set_timer(andaiv,100)
 
 andat = pygame.USEREVENT + 4
 pygame.time.set_timer(andat,500)
+
+andab = pygame.USEREVENT + 6
+pygame.time.set_timer(andab, 200)
 
 #espaçoparanimação
 animacao = pygame.USEREVENT + 5

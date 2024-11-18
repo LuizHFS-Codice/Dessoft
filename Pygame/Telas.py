@@ -1,7 +1,243 @@
 import pygame
 from Inicializa import *
-
 #começa a rodar a tela inicial do jogo
+def fase3():
+    movimento=0
+    Inv=0 #Invulnerabilidade
+    ContVoadores=0
+    ContTrimpots=0
+    Pontuação=0
+
+    #tela rolando para esquerda
+    rolagem=0
+    fundo=ceil(Largura/SkyBox.get_width()) +1
+
+    #       Fase 2
+    #coloca inimigo novo
+    ColocaVoadores(IniVoaImg)
+    TrimpotImg = BornTrimpot(LargNavt,AltNavt)
+    ColocaTrimpot(TrimpotImg)
+    BossImg1=BornBoss1(LargBoss1,AltBoss1)
+    ColocaBoss1(BossImg1)
+
+    game=True
+    while game:
+        relógio.tick(FPS)
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                game=False
+                
+    #Começar Movimento
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_LEFT:
+                    jogador.speedx-=Vx
+                if event.key==pygame.K_RIGHT:
+                    jogador.speedx+=Vx
+                if event.key==pygame.K_UP:
+                    jogador.speedy-=Vy
+                if event.key==pygame.K_DOWN:
+                    jogador.speedy+=Vy
+                if event.key==pygame.K_z:
+                    jogador.atirar()
+                if event.key==pygame.K_x:
+                    jogador.bomba()
+
+    #Parar Movimento
+            if event.type==pygame.KEYUP:
+                if event.key==pygame.K_LEFT:
+                    jogador.speedx+=Vx
+                if event.key==pygame.K_RIGHT:
+                    jogador.speedx-=Vx
+                if event.key==pygame.K_UP:
+                    jogador.speedy+=Vy
+                if event.key==pygame.K_DOWN:
+                    jogador.speedy-=Vy
+
+    #Movimento do Inimigo Voador:
+            if event.type==andaiv:
+                for cada_um in Inimigos_Voadores:
+                    movinivoa=random.randint(0,30)
+                    if movinivoa in range(0,5):
+                        cada_um.speedx-=Vx 
+                    if movinivoa in range(5,10):
+                        cada_um.speedy-=Vy
+                    if movinivoa in range(10,15):
+                        cada_um.speedx+=Vx
+                    if movinivoa in range(15,20):
+                        cada_um.speedy+=Vy
+            if event.type==timertiroiv:
+                for cada_um in Inimigos_Voadores:
+                    moviatira=random.randint(0,30)
+                    if moviatira%2!=0:
+                        cada_um.atirar()
+    #Movimento do Inimigo Voador:
+            if event.type==andab:
+                for boss in Boss:
+                    movinivoa=random.randint(0,30)
+                    if movinivoa in range(0,5):
+                        boss.speedx-=Vx 
+                    if movinivoa in range(5,10):
+                        boss.speedy-=Vy
+                    if movinivoa in range(10,15):
+                        boss.speedx+=Vx
+                    if movinivoa in range(15,20):
+                        boss.speedy+=Vy
+            if event.type==timertirob:
+                for boss in Boss:
+                    moviatira=random.randint(0,30)
+                    if moviatira%2!=0:
+                        boss.disparar()
+        #Movimento do Trimpod
+            if event.type==andat:
+                for cada in Trimpots:
+                    moviTrimpot=random.randint(0,30)
+                    if moviTrimpot in range(0,4):
+                        cada.speedx-=Vx/2
+                    if moviTrimpot in range(4,9):
+                        cada.speedx+=Vx
+            if event.type==timertirot:
+                for cada in Trimpots:
+                    moviatirat=random.randint(0,30)
+                    if moviatirat%2!=0:
+                        cada.atirar()
+
+        #Danos
+        Dano=[]
+        if Inv==0:
+            Dano=pygame.sprite.spritecollide(jogador,Balas_Voadores,1)
+            if len(Dano)>0:
+                jogador.vida-=Dano_inimigo_Voa
+                Inv=FPS*T_Inv
+                Pontuação-=10
+            Dano=pygame.sprite.spritecollide(jogador,Lasers,1)
+            if len(Dano)>0:
+                jogador.vida-=Dano_Laser
+                Inv=FPS*T_Inv
+                Pontuação-=10
+            Dano=pygame.sprite.spritecollide(jogador,Missils,1)
+            if len(Dano)>0:
+                jogador.vida-=Dano_Missil_Inimigo
+                Inv=FPS*T_Inv
+                Pontuação-=10
+            Dano=pygame.sprite.spritecollide(jogador,Trimpots,0)
+            if len(Dano)>0:
+                jogador.vida-=Dano_Colisão
+                Inv=FPS*T_Inv
+                Pontuação-=10
+            Dano=pygame.sprite.spritecollide(jogador,Inimigos_Voadores,0)
+            if len(Dano)>0:
+                jogador.vida-=Dano_Colisão
+                Inv=FPS*T_Inv
+                Pontuação-=10
+            Dano=pygame.sprite.spritecollide(jogador,Boss,0)
+            if len(Dano)>0:
+                jogador.vida-=Dano_Colisão-10
+                Inv=FPS*T_Inv
+                Pontuação-=20
+
+        else:
+            Inv-=1
+        if jogador.vida<=0:
+            game=False
+            animacaomorte(Pontuação)
+        #Colisão Tiro-Inimigo Voador
+        Dano=[]
+        Dano=pygame.sprite.groupcollide(Trimpots,Balas,0,1)
+        for Tripod in Dano:
+            Tripod.vida-=Dano_Tiro_Jogador
+            Pontuação+=50
+            if Tripod.vida<=0:
+                Tripod.kill()
+                ContTrimpots+=1
+                Pontuação+=250
+        #Colisão Tiro-Tripod
+        Dano=[]
+        Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Balas,0,1)
+        for Inimigos in Dano:
+            Inimigos.vida-=Dano_Tiro_Jogador
+            Pontuação+=10
+            if Inimigos.vida<=0:
+                Inimigos.kill()
+                ContVoadores+=1
+                Pontuação+=250
+        Dano=pygame.sprite.groupcollide(Boss,Balas,0,1)
+        for Inimigos in Dano:
+            Inimigos.vida-=Dano_Tiro_Jogador
+            Pontuação+=20
+            if Inimigos.vida<=0:
+                Inimigos.kill()
+                ContVoadores+=1
+                Pontuação+=250
+                game=False
+                animacaowin(Pontuação)
+        #Colisão Bomba-Tripod
+        Dano=[]
+        Dano=pygame.sprite.groupcollide(Trimpots,Bombas,0,1)
+        for Trimpod in Dano:
+            Trimpod.vida-=Dano_Bomba_Jogador
+            Pontuação+=10
+            if Trimpod.vida<=0:
+                Trimpod.kill()
+                ContTrimpots+=1
+                Pontuação+=150
+        #Colisão Bomba-Inimigo Voador
+        Dano=[]
+        Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Bombas,0,1)
+        for Inimigos in Dano:
+            Inimigos.vida-=Dano_Bomba_Jogador
+            Pontuação+=25
+            if Inimigos.vida<=0:
+                Inimigos.kill()
+                ContVoadores+=1
+                Pontuação+=150
+        Dano=pygame.sprite.groupcollide(Boss,Bombas,0,1)
+        for Inimigos in Dano:
+            Inimigos.vida-=Dano_Bomba_Jogador
+            Pontuação+=25
+            if Inimigos.vida<=0:
+                Inimigos.kill()
+                ContVoadores+=1
+                Pontuação+=150
+                game=False
+                animacaowin(Pontuação)         
+        #Repawn dos inimigos
+        if ContTrimpots==3:
+            for i in range(3):
+                Trimpot=InimigoBaixo(TrimpotImg,Sprites,Missils,MisselImg)
+                Sprites.add(Trimpot)
+                Trimpots.add(Trimpot)
+                ContTrimpots=0
+        if ContVoadores==3:
+            for i in range(3):
+                InimigoVoador=InimigoVoa(IniVoaImg,Sprites,Balas_Voadores,Balaimg)
+                Sprites.add(InimigoVoador)
+                Inimigos_Voadores.add(InimigoVoador)
+                ContVoadores=0
+        
+        vida_tela=font.render(f'{jogador.vida}', False, (255, 255, 255))
+        Pontuação_Tela=font.render(f'{Pontuação}', False, (255, 255, 255))
+
+        Sprites.update()
+
+        #Fundo
+        movimento=0
+        rolagem-=1
+        Janela.fill((0,0,0))
+        while movimento<fundo:
+            Janela.blit(SkyBox,(SkyBox.get_width()*movimento+rolagem,0))
+            movimento+=1
+        rolagem-=2
+        if abs(rolagem)>SkyBox.get_width():
+            rolagem=0
+        Janela.blit(vida_tela,(0,0))
+        Janela.blit(Pontuação_Tela,(Largura-100,0))
+
+        Sprites.draw(Janela)
+
+        pygame.display.update()
+    pygame.quit
+
+    #Codar o Boss aqui
 def fase2():
     movimento=0
     Inv=0 #Invulnerabilidade
@@ -111,7 +347,7 @@ def fase2():
             Inv-=1
         if jogador.vida<=0:
             game=False
-            animacaomorte()
+            animacaomorte(Pontuação)
         #Colisão Tiro-Inimigo Voador
         Dano=[]
         Dano=pygame.sprite.groupcollide(Trimpots,Balas,0,1)
@@ -189,12 +425,21 @@ def fase2():
 
         pygame.display.update()
         if Pontuação > 3000:
-            frametelaboss() 
+            jogador.speedx = 0
+            jogador.speedy = 0
             game=False
-
+            frametelaboss()
     pygame.quit
 
 def fase1():
+
+    jogador.speedx = 0
+    jogador.speedy = 0
+
+    limpa()
+
+    pygame.mixer.music.load("Assets\Imagens\Músicas\Michael Jackson - Billie Jean (Official Video).mp3")
+    pygame.mixer.music.play(-1) # -1 dis pro python que a trilha vai executar infinitamente
 
     ColocaVoadores(IniVoaImg)
 
@@ -213,6 +458,8 @@ def fase1():
     framepadrao(Historia1)
     framepadrao1(Historia2)
     framepadrao(Historia3)
+
+    jogador.vida=50
 
     #começar a fase 1
     game=True
@@ -282,7 +529,7 @@ def fase1():
             Inv-=1
         if jogador.vida<=0:
             game=False
-            animacaomorte()
+            animacaomorte(Pontuação)
         #Colisão Tiro-Inimigo Voador
         Dano=[]
         Dano=pygame.sprite.groupcollide(Inimigos_Voadores,Balas,0,1)
@@ -335,9 +582,13 @@ def fase1():
         pygame.display.update()
 
         #passando de fase
-        if Pontuação > 1500:
+        if Pontuação > 2000:
+            jogador.speedx = 0
+            jogador.speedy = 0
             game=False
             framefase2() 
+    pygame.quit
+
 #função que traduz get_pos e transforma em dados para usar na lógica dos botões
 def verificabotao(bx,by,bt,ba):
     #pega a area do botão
@@ -355,7 +606,6 @@ def verificabotao(bx,by,bt,ba):
     return pos, xb, yb
 
 def frameinicio():
-    framepadrao(Aviso)
     inicio = True
     while inicio:
         for event in pygame.event.get():
@@ -380,12 +630,12 @@ def frameinicio():
             if botsair[0][0] in botsair[1] and botsair[0][1] in botsair[2]:
                 #sai do jogo
                 if event.type==pygame.MOUSEBUTTONDOWN:
-                    inicio = False
                     pygame.quit
-            Janela.fill((255,255,255))
-            Janela.blit(telainicial,(0,0))
-            pygame.display.update()
-
+                    inicio = False
+        Janela.fill((255,255,255))
+        Janela.blit(telainicial,(0,0))
+        pygame.display.update()
+    pygame.quit
 
 def framecreditos():
     credit=True
@@ -403,6 +653,7 @@ def framecreditos():
         Janela.fill((255,255,255))
         Janela.blit(telacreditos,(0,0))
         pygame.display.update()
+    pygame.quit
 
 def framefase2():
     Fase2=True
@@ -433,9 +684,11 @@ def frametelaboss():
             #Continua o games
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     telabossa=False
-            Janela.fill((255,255,255))
-            Janela.blit(telaboss,(0,0))
-            pygame.display.update()
+                    fase3()
+        Janela.fill((255,255,255))
+        Janela.blit(telaboss,(0,0))
+        pygame.display.update()
+    pygame.quit
 
 def framepadrao(img):
     BossFight=True
@@ -452,6 +705,7 @@ def framepadrao(img):
         Janela.fill((255,255,255))
         Janela.blit(img,(0,0))
         pygame.display.update()
+    pygame.quit
 
 def framepadrao1(img):
     BossFight=True
@@ -468,24 +722,46 @@ def framepadrao1(img):
         Janela.fill((255,255,255))
         Janela.blit(img,(0,0))
         pygame.display.update()
+    pygame.quit
 
-def animacaomorte():
+def Comeco():
+    Aviso=True
+    while Aviso:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                Aviso = False
+                pygame.quit
+            botcont = verificabotao(bxcont,bycont,btv,bav)
+            if botcont[0][0] in botcont[1] and botcont[0][1] in botcont[2]:
+            #Continua o games
+                if event.type==pygame.MOUSEBUTTONDOWN:
+                    Aviso=False
+                    frameinicio()
+        Janela.fill((255,255,255))
+        Janela.blit(Avisopng,(0,0))
+        pygame.display.update()
+    pygame.quit
+
+def animacaomorte(Pontuação):
+    jogador.speedx = 0
+    jogador.speedy = 0
+    limpa()
     Janela.fill((255,255,255))
     Janela.blit(Morte1,(0,0))
     pygame.display.update()
-    pygame.time.delay(350)
+    pygame.time.delay(200)
     Janela.fill((255,255,255))
     Janela.blit(Morte2,(0,0))
     pygame.display.update()
-    pygame.time.delay(350)
+    pygame.time.delay(250)
     Janela.fill((255,255,255))
     Janela.blit(Morte3,(0,0))
     pygame.display.update()
-    pygame.time.delay(350)
+    pygame.time.delay(250)
     Janela.fill((255,255,255 ))
     Janela.blit(Morte4,(0,0))
     pygame.display.update()
-    pygame.time.delay(400)
+    pygame.time.delay(310)
     Janela.fill((255,255,255))
     Morto=True
     while Morto:
@@ -505,6 +781,54 @@ def animacaomorte():
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     Morto=False
                     frameinicio()
+        font = pygame.font.SysFont(None, 48)
+        text = font.render(f'{Pontuação}', True, (0, 0, 255))
         Janela.fill((255,255,255))
         Janela.blit(Morte5,(0,0))
+        Janela.blit(text,(Largura/4+20,Altura/2-10))
         pygame.display.update()
+    pygame.quit
+
+def limpa():
+    for inimigo in Inimigos_Voadores:
+        inimigo.kill()
+    for inimigo in Trimpots:
+        inimigo.kill()
+    for inimigo in Boss:
+        inimigo.kill()
+    Balas.remove(*Balas)
+    Balas_Voadores.remove(*Balas_Voadores)
+    Inimigos_Voadores.remove(*Inimigos_Voadores)
+    Trimpots.remove(*Trimpots)
+    Boss.remove(*Boss)
+
+def animacaowin(Pontuação):
+    jogador.speedx = 0
+    jogador.speedy = 0
+    limpa()
+    Janela.fill((255,255,255))
+    Janela.blit(taxano,(0,0))
+    pygame.display.update()
+    pygame.time.delay(2000)
+    Janela.fill((255,255,255))
+    Janela.blit(elon,(0,0))
+    pygame.display.update()
+    pygame.time.delay(2000)
+    Venceu = True
+    while Venceu:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                pygame.quit
+            botcont3 = verificabotao(bmx,bvmy,bvmt,bvma)
+            if botcont3[0][0] in botcont3[1] and botcont3[0][1] in botcont3[2]:
+            #Acontece nada
+                if event.type==pygame.MOUSEBUTTONDOWN:
+                    Venceu=False
+                    frameinicio()
+        font = pygame.font.SysFont(None, 48)
+        text = font.render(f'{Pontuação}', True, (0, 0, 255))
+        Janela.fill((255,255,255))
+        Janela.blit(Ganhaste,(0,0))
+        Janela.blit(text,(Largura/4+20,Altura/2-10))
+        pygame.display.update()
+    pygame.quit
