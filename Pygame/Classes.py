@@ -115,6 +115,12 @@ class Tiro(pygame.sprite.Sprite):
         #se for maior que a largura da tela, apaga o tiro
         if self.rect.bottom > Largura:
             self.kill()
+        
+        #Sugestão Classe tiro
+        # def update(self):
+        #     self.rect.x += self.speedx
+        #     if not self.rect.colliderect(pygame.Rect(0, 0, Largura, Altura)):
+        #         self.kill()
 
 
 
