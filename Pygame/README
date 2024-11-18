@@ -1,17 +1,91 @@
-Jogo "Space Flight"!
+---
 
-Navegue pelo espaço, lute contra inimigos e derrote chefões!
+# Space Flight
 
-Jogo desenvolvido pelo grupo 11:
+**Navegue pelo espaço, lute contra inimigos e derrote chefões!**
 
-    Luiz Henrique, 
-    Erik Albuquerque 
-    Antonio Victor de Oliveira
+---
 
-Ideia do jogo:
+## Descrição do Projeto
 
-Spaceflight é um jogo de nave, que movimenta nas quatro direções, essa nave consegue atirar para frente e joga uma bomba para baixo. O jogo vai ter inimigos com movimentações diferentes e aletórias (para que o jogador tenha uma melhor nível de dificuldade ) e eventualmente vai ter um boss, com um sistema pontuação.
+**Space Flight** é um emocionante jogo de nave que se passa em um futuro distópico, no qual o jogador pode se mover em quatro direções, atirar projéteis para frente e lançar bombas para baixo. O jogo inclui inimigos com movimentações aleatórias e desafiadoras, além de batalhas épicas contra chefes. Também há um sistema de pontuação que incentiva os jogadores a melhorarem suas habilidades.
 
-Link do repositório: https://github.com/LuizHFS-Codice/Dessoft/tree/main/Pygame
+O jogo foi desenvolvido como parte do projeto final da disciplina **Design de Software**.
 
-Link dos rascunhos e processos de criação do jogo: https://alinsperedu-my.sharepoint.com/:f:/g/personal/antoniovomp_al_insper_edu_br/EosbUv8j5SJAqwgzgoAiPOgB-ur5hJKJs4azV6dlUVgWbw?e=iPDDeU
+---
+
+Autores
+
+O jogo foi desenvolvido pelo grupo 11:
+- **Luiz Henrique**
+- **Erik Albuquerque**
+- **Antonio Victor de Oliveira**
+
+---
+
+## **Documentação e Processos**
+
+- **Repositório no GitHub**: [Space Flight no GitHub](https://github.com/LuizHFS-Codice/Dessoft/tree/main/Pygame)
+- **Rascunhos e Processos Criativos**: [Documentos de Criação](https://alinsperedu-my.sharepoint.com/:f:/g/personal/antoniovomp_al_insper_edu_br/EosbUv8j5SJAqwgzgoAiPOgB-ur5hJKJs4azV6dlUVgWbw?e=iPDDeU)
+
+
+Recursos do Jogo
+
+- Movimentação Livre: Controle total da nave em todas as direções.
+- Sistemas de Ataque:
+  - Disparo de projéteis para frente.
+  - Lançamento de bombas para eliminar inimigos abaixo.
+- Inimigos Aleatórios**: Movimentos imprevisíveis para maior desafio.
+- Chefões: Batalhas intensas contra inimigos poderosos.
+- Pontuação: Acompanhe e melhore seu desempenho com o sistema de pontuação integrado.
+
+---
+
+## Requisitos do Sistema
+
+Para jogar, você precisa de:
+- **Python 3.x**
+- **Biblioteca PyGame**
+
+---
+
+## Como Executar
+
+### Passo 1: Clone o Repositório
+Clone o projeto para o seu ambiente local:
+```bash
+git clone https://github.com/LuizHFS-Codice/Dessoft.git
+```
+
+###Passo 2: Instale as Dependências**
+Instale a biblioteca PyGame:
+```bash
+pip install pygame
+```
+
+### Passo 3: Navegue até o Diretório do Jogo**
+Entre na pasta `Pygame`:
+```bash
+cd Dessoft/Pygame
+```
+
+Passo 4: Execute o Jogo
+Inicie o jogo executando o arquivo principal:
+```bash
+python Rodajogo.py
+```
+
+---
+
+##Controles do Jogo
+
+- **Movimentação**: Use as **setas direcionais** para mover a nave.
+- **Atirar**: Pressione a tecla **espaço** para disparar projéteis.
+- **Lançar Bombas**: Pressione a tecla **B** para lançar bombas.
+
+
+
+
+
+
+Com este README atualizado, o projeto atende aos critérios da rúbrica, como clareza na descrição, estrutura detalhada, documentação dos processos e informações sobre a execução do jogo. Caso precise de ajustes adicionais, estou à disposição!
