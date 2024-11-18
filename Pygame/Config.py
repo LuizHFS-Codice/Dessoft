@@ -1,5 +1,5 @@
 from math import *
-
+import pygame
 #           Medições
 Largura=824
 Altura=596

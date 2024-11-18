@@ -478,7 +478,7 @@ def animacaomorte():
     Janela.blit(Morte3,(0,0))
     pygame.display.update()
     pygame.time.delay(350)
-    Janela.fill((255,255,255))
+    Janela.fill((255,255,255 ))
     Janela.blit(Morte4,(0,0))
     pygame.display.update()
     pygame.time.delay(400)
