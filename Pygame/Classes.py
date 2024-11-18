@@ -189,6 +189,12 @@ class InimigoVoa(pygame.sprite.Sprite):
         self.Balas.add(atiro)
         self.Sprites.add(atiro)
 
+    # Sugestao do Atirar 
+    # def atirar(self, tiro_class, img, grupo_balas, grupo_sprites):
+    #     novo_tiro = tiro_class(img, self.rect.centerx, self.rect.centery)
+    #     grupo_balas.add(novo_tiro)
+    #     grupo_sprites.add(novo_tiro)
+
 class TiroInimigo(pygame.sprite.Sprite):
     def __init__(self, img, x, y):
         pygame.sprite.Sprite.__init__(self)
